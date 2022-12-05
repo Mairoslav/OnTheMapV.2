@@ -7,11 +7,15 @@
 
 import UIKit
 
-@main
+// @main deleted
+@UIApplicationMain // added
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var window: UIWindow? // added
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

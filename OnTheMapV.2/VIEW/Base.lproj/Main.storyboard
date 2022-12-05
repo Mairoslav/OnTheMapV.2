@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--LogIn-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OnTheMapV_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" title="LogIn" id="BYZ-38-t0r" customClass="LoginViewController" customModule="OnTheMapV_2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VyK-hi-7AG" userLabel="stackViewAllFields">
                                 <rect key="frame" x="20" y="358.66666666666669" width="353" height="300.00000000000006"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IkN-LA-LLc" userLabel="EmailTextField">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IkN-LA-LLc" userLabel="emailTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ZSE-rv-95q"/>
@@ -51,6 +51,9 @@
                                         <color key="tintColor" red="0.031372549019607843" green="0.70588235294117641" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                        <connections>
+                                            <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RQr-6V-pWj"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPd-mX-iSo" userLabel="stackViewOr">
                                         <rect key="frame" x="0.0" y="120" width="353" height="30"/>
@@ -84,6 +87,9 @@
                                         <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Login via Facebook"/>
+                                        <connections>
+                                            <action selector="loginViaWebsiteTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3oj-LQ-m7v"/>
+                                        </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="95S-HH-fbx">
                                         <rect key="frame" x="0.0" y="199.99999999999994" width="353" height="100"/>
@@ -122,6 +128,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="95S-HH-fbx" id="ggP-Mq-ngB"/>
+                        <outlet property="emailTextField" destination="IkN-LA-LLc" id="Kwa-3Y-vih"/>
+                        <outlet property="loginButton" destination="rSf-0e-QhM" id="YKH-AQ-k1a"/>
+                        <outlet property="loginViaWebsiteButton" destination="Oe2-uH-yxK" id="Znq-lP-K9V"/>
+                        <outlet property="passwordTextField" destination="d4R-7D-Zqr" id="3Tt-9I-4m5"/>
                         <segue destination="8dZ-eL-aMN" kind="presentation" identifier="completeLogin" id="Lsu-YA-KmN"/>
                     </connections>
                 </viewController>
@@ -377,7 +388,7 @@
         <!--Information Posting View-->
         <scene sceneID="liW-53-chg">
             <objects>
-                <viewController title="Information Posting View" modalPresentationStyle="fullScreen" id="EmY-AY-MwV" customClass="ViewController" customModule="OnTheMapV_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Information Posting View" modalPresentationStyle="fullScreen" id="EmY-AY-MwV" customClass="ViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G2d-Il-3Os">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
