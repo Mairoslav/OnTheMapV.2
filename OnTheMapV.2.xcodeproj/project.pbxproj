@@ -13,6 +13,7 @@
 		44C3E1B02938FC2C00B89909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44C3E1AE2938FC2C00B89909 /* Main.storyboard */; };
 		44C3E1B22938FC2D00B89909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44C3E1B12938FC2D00B89909 /* Assets.xcassets */; };
 		44C3E1B52938FC2D00B89909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44C3E1B32938FC2D00B89909 /* LaunchScreen.storyboard */; };
+		44CEA38F293D51DF00E4D8B6 /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CEA38E293D51DF00E4D8B6 /* StudentLocationResponse.swift */; };
 		44D01DBA293B5B0000E99A02 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DB9293B5B0000E99A02 /* StudentInformation.swift */; };
 		44D01DBC293B660B00E99A02 /* ProjectSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DBB293B660B00E99A02 /* ProjectSpecification.swift */; };
 		44D01DBE293B6F9E00E99A02 /* StudentInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DBD293B6F9E00E99A02 /* StudentInformationModel.swift */; };
@@ -28,6 +29,7 @@
 		44C3E1B12938FC2D00B89909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44C3E1B42938FC2D00B89909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44C3E1B62938FC2D00B89909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44CEA38E293D51DF00E4D8B6 /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
 		44D01DB9293B5B0000E99A02 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		44D01DBB293B660B00E99A02 /* ProjectSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSpecification.swift; sourceTree = "<group>"; };
 		44D01DBD293B6F9E00E99A02 /* StudentInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationModel.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				44D01DB9293B5B0000E99A02 /* StudentInformation.swift */,
+				44CEA38E293D51DF00E4D8B6 /* StudentLocationResponse.swift */,
 			);
 			path = ResponsesUdacityApi;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				44D01DBC293B660B00E99A02 /* ProjectSpecification.swift in Sources */,
 				44C3E1AB2938FC2C00B89909 /* SceneDelegate.swift in Sources */,
 				44D01DBA293B5B0000E99A02 /* StudentInformation.swift in Sources */,
+				44CEA38F293D51DF00E4D8B6 /* StudentLocationResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
