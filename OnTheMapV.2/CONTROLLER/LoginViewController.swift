@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginTapped(_ sender: UIButton) {
         setLoggingIn(true)
-        // ... continue with ClientUdacityApi.login
+        ClientUdacityApi.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
     }
     
     @IBAction func loginViaWebsiteTapped(_ sender: Any) {

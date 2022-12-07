@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 4. Parse API: What is a Student Location?
 // MARK: B.2. "StudentInformation" struct to store individual locations and links downloaded from the service
 
 struct StudentInformation: Codable { // In Parse, each StudentLocation is represented as a collection of key/value pairs (Parse Types are String, String?, Double):
