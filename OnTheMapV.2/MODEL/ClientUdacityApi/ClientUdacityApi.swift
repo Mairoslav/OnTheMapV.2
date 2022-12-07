@@ -16,6 +16,7 @@ class ClientUdacityApi {
         static var firstName = ""
         static var lastName = ""
         static var sessionId = ""
+        static var success = true // new
         static var pinAlreadyPosted = false
     }
     
@@ -36,6 +37,7 @@ class ClientUdacityApi {
         case objectId // identify student location
         case sessionId // used for logging session
         case publicUserData // fake user data
+        case logout
         
         
         var stringValue: String {
@@ -56,6 +58,8 @@ class ClientUdacityApi {
                     return Endpoints.base + Endpoints.sessionPath // sessionId: used for loggingIn
                 case .publicUserData:
                     return Endpoints.base + Endpoints.userIdPath + "/\(Auth.userId)" // fake random user IDs (see above comment for "uniqueKey")
+                case .logout:
+                    return Endpoints.base + Endpoints.sessionPath
             }
         }
         var url: URL {
@@ -162,6 +166,33 @@ class ClientUdacityApi {
         return task
     }
     
+    // MARK: DELETE Student Locaton (DELETE)
+    class func taskForDELETERequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONEncoder().encode(body)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
+            } catch {
+                completion(nil, error)
+            }
+        }
+        task.resume()
+    }
+    
     // MARK: login (via POST)
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let body = LoginRequest(udacity: LoginRequest.RequestToken(username: username, password: password))
@@ -191,6 +222,16 @@ class ClientUdacityApi {
                 completion(true, nil)
             } else {
                 completion(false, error)
+            }
+        }
+    }
+    
+    class func logout(completion: @escaping () -> Void) {
+        let body = LogoutRequest(sessionId: Auth.sessionId)
+        taskForDELETERequest(url: Endpoints.logout.url, responseType: LogoutResponse.self, body: body) { response, error in
+            if let response = response {
+                Auth.success = response.success
+                completion()
             }
         }
     }

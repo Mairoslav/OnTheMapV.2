@@ -14,7 +14,7 @@ import Foundation
 // A.1.
 // CRITERIA: Does the app allow the user to login?
 // MEETS SPECIFICATIONS: The app has a login view that accepts email and password strings from users, with a “Login” button.
-// ... NO
+// YES
 
 // A.2.
 // CRITERIA: Does the app notify the user if the login fails?
