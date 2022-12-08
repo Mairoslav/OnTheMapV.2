@@ -21,8 +21,16 @@ extension UIViewController {
     
     // MARK: logout
     @IBAction func logoutTapped(_sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-        print("now logged out")
+        ClientUdacityApi.logout { success, error in
+            if success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                    print("now logged out")
+                }
+            } else {
+                self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "")
+            }
+        }
     }
     
 }

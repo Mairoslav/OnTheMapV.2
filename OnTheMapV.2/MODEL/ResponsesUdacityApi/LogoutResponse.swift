@@ -8,5 +8,12 @@
 import Foundation
 
 struct LogoutResponse: Decodable {
-    let success: Bool 
+    
+    struct Session: Codable {
+        let id: String
+        let expiration: String
+    }
+    
+    let session: Session
+    
 }

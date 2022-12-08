@@ -20,7 +20,6 @@
 		44CEA3D9293F702B00E4D8B6 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CEA3D8293F702B00E4D8B6 /* SessionResponse.swift */; };
 		44CEA3DB29409EEA00E4D8B6 /* PublicUserDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CEA3DA29409EEA00E4D8B6 /* PublicUserDataResponse.swift */; };
 		44CEA3DD2940F19600E4D8B6 /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CEA3DC2940F19600E4D8B6 /* LogoutResponse.swift */; };
-		44CEA3DF2940F5B000E4D8B6 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CEA3DE2940F5B000E4D8B6 /* LogoutRequest.swift */; };
 		44D01DBA293B5B0000E99A02 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DB9293B5B0000E99A02 /* StudentInformation.swift */; };
 		44D01DBC293B660B00E99A02 /* ProjectSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DBB293B660B00E99A02 /* ProjectSpecification.swift */; };
 		44D01DBE293B6F9E00E99A02 /* StudentInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D01DBD293B6F9E00E99A02 /* StudentInformationModel.swift */; };
@@ -43,7 +42,6 @@
 		44CEA3D8293F702B00E4D8B6 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		44CEA3DA29409EEA00E4D8B6 /* PublicUserDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserDataResponse.swift; sourceTree = "<group>"; };
 		44CEA3DC2940F19600E4D8B6 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
-		44CEA3DE2940F5B000E4D8B6 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		44D01DB9293B5B0000E99A02 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		44D01DBB293B660B00E99A02 /* ProjectSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSpecification.swift; sourceTree = "<group>"; };
 		44D01DBD293B6F9E00E99A02 /* StudentInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationModel.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				44CEA3D6293E564900E4D8B6 /* LoginRequest.swift */,
-				44CEA3DE2940F5B000E4D8B6 /* LogoutRequest.swift */,
 			);
 			path = RequestsUdacityApi;
 			sourceTree = "<group>";
@@ -240,7 +237,6 @@
 				44CEA3D5293E3BB300E4D8B6 /* ErrorResponse.swift in Sources */,
 				44D01DBC293B660B00E99A02 /* ProjectSpecification.swift in Sources */,
 				44C3E1AB2938FC2C00B89909 /* SceneDelegate.swift in Sources */,
-				44CEA3DF2940F5B000E4D8B6 /* LogoutRequest.swift in Sources */,
 				44D01DBA293B5B0000E99A02 /* StudentInformation.swift in Sources */,
 				44CEA38F293D51DF00E4D8B6 /* StudentLocationResponse.swift in Sources */,
 				44CEA3D7293E564900E4D8B6 /* LoginRequest.swift in Sources */,
