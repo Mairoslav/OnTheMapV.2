@@ -41,7 +41,7 @@
                                             <constraint firstAttribute="height" constant="30" id="tdB-8L-UgK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSf-0e-QhM">
                                         <rect key="frame" x="0.0" y="80" width="353" height="30"/>
@@ -50,7 +50,10 @@
                                         </constraints>
                                         <color key="tintColor" red="0.031372549019607843" green="0.70588235294117641" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Login">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RQr-6V-pWj"/>
                                         </connections>
@@ -294,7 +297,7 @@
         <!--mapTabbedView-->
         <scene sceneID="FZ0-yi-3VX">
             <objects>
-                <viewController title="Map Tabbed View" id="XeI-lY-e7d" userLabel="mapTabbedView" sceneMemberID="viewController">
+                <viewController title="Map Tabbed View" id="XeI-lY-e7d" userLabel="mapTabbedView" customClass="Map" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZF-wj-qSJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,9 +334,16 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="L5P-7d-UcI" id="Pl8-2A-slG"/>
                         <segue destination="EmY-AY-MwV" kind="presentation" identifier="addLocation" id="CsG-wr-HJd"/>
                     </connections>
                 </viewController>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="S7c-Cc-v3G">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <standardMapConfiguration key="preferredConfiguration"/>
+                </mapView>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1vW-Ke-ytd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2592" y="-375"/>
@@ -476,7 +486,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tln-Sv-7yO"/>
+        <segue reference="CsG-wr-HJd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>

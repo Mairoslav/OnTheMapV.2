@@ -1,5 +1,5 @@
 //
-//  SessionResponse.swift
+//  PostSessionResponse.swift
 //  OnTheMapV.2
 //
 //  Created by mairo on 06/12/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SessionResponse: Codable {
+struct PostSessionResponse: Codable {
     
     struct Account: Codable {
         let registered: Bool
@@ -26,8 +26,7 @@ struct SessionResponse: Codable {
 
 /*
  9. Udacity API: POSTing a Session.
- Example JSON Response: See Resources
- https://video.udacity-data.com/topher/2016/June/57583f67_post-session/post-session.json
+ Example JSON Response from: https://video.udacity-data.com/topher/2016/June/57583f67_post-session/post-session.json
  
  {
      "account":{

@@ -10,7 +10,56 @@ import UIKit
 
 extension UIViewController {
     
-    // ...
+    // MARK: addPinTapped
+    /* @IBAction*/ func addPinTapped(_ sender: UIBarButtonItem) {
+        let locationPosted = ClientUdacityApi.Auth.objectId != ""
+        
+        if locationPosted {
+            // if user alrady added pin, he can overwrite it or cancel the current action
+            let overwrite = UIAlertAction(title: "Overwrite", style: .default) { (action) in
+                self.overwriteLocation(toOverwrite: true) // yet to toOverwrite because pinAlreadyPosted
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            }
+            // alert to inform that location has been already posted
+            let locationPostedAlert = UIAlertController(title: nil, message: "You have already posted your Location. Do you want to overwrite your current Location?", preferredStyle: .alert)
+            locationPostedAlert.addAction(overwrite)
+            locationPostedAlert.addAction(cancel)
+            present(locationPostedAlert, animated: true, completion: nil)
+        } else {
+            overwriteLocation(toOverwrite: false) // not toOverwrite because pinAlreadyPosted is false 
+        }
+    }
+    
+    // MARK: overwriteLocation
+    func overwriteLocation(toOverwrite: Bool) {
+        ClientUdacityApi.Auth.pinAlreadyPosted = toOverwrite
+        self.performSegue(withIdentifier: "addLocation", sender: nil)
+    }
+        
+
+    // MARK: openURLLink
+    func openURLLink(urlString: String?) {
+        guard let urlString = urlString else {
+            showAlertMessage(title: "Cannot open", message: "No web-site provided")
+            return
+        }
+        
+        let urlProvided = URL(string: urlString)
+        
+        if let urlProvided = urlProvided {
+            let validUrl: Bool = UIApplication.shared.canOpenURL(urlProvided)
+            if validUrl {
+                DispatchQueue.main.async {
+                    UIApplication.shared.open(urlProvided, options: [:], completionHandler: nil)
+                }
+            } else {
+                showAlertMessage(title: "Cannot open", message: "Not valid url")
+            }
+        } else {
+            showAlertMessage(title: "Cannot open", message: "Url not provided")
+        }
+    }
     
     // MARK: alert message
     func showAlertMessage(title: String, message: String) {
