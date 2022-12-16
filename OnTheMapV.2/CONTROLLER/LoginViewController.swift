@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
  
+    // MARK: outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -16,14 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginViaWebsiteButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        emailTextField.text = ""
-        passwordTextField.text = ""
-    }
-    
-    
+    // MARK: actions
     @IBAction func loginTapped(_ sender: UIButton) {
         setLoggingIn(true)
         ClientUdacityApi.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
@@ -33,7 +27,7 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "completeLogin", sender: nil)
     }
     
-    // MARK: helper function 1
+    // MARK: handleLoginResponse
     func handleLoginResponse(success: Bool, error: Error?) {
         setLoggingIn(false)
         if success {
@@ -43,7 +37,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: helper function 2
+    // MARK: setLoggingIn
     // helper function for start/stop activityIndicator & en/dis-able login fields and buttons
     func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {

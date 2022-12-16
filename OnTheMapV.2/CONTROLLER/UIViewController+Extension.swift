@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     // MARK: addPinTapped
-    /* @IBAction*/ func addPinTapped(_ sender: UIBarButtonItem) {
+    @IBAction func addPinTapped(_ sender: UIBarButtonItem) {
         let locationPosted = ClientUdacityApi.Auth.objectId != ""
         
         if locationPosted {
@@ -28,6 +28,17 @@ extension UIViewController {
             present(locationPostedAlert, animated: true, completion: nil)
         } else {
             overwriteLocation(toOverwrite: false) // not toOverwrite because pinAlreadyPosted is false 
+        }
+    }
+    
+    // MARK: refreshStudenPosts
+    @IBAction func refreshStudentPosts(_ sender: UIBarButtonItem) {
+        ClientUdacityApi.getStudentInformation { studentLocation, error in
+            if error ==  nil {
+                studentInformationModel.studentLocation = studentLocation
+            } else {
+                self.showAlertMessage(title: "Data Refresh Failed", message: "Unable to Refresh Students Information")
+            }
         }
     }
     
@@ -72,10 +83,10 @@ extension UIViewController {
     @IBAction func logoutTapped(_sender: UIBarButtonItem) {
         ClientUdacityApi.logout { success, error in
             if success {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                    print("now logged out")
-                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
+                LoginViewController.modalPresentationStyle = .fullScreen
+                self.present(LoginViewController, animated: true)
             } else {
                 self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "")
             }

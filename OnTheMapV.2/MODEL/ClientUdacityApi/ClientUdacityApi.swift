@@ -300,7 +300,7 @@ class ClientUdacityApi {
     class func getStudentInformation(completion: @escaping ([GetStudentInformation.StudentLocationData], Error?) -> Void) {
         taskForGETRequest(url: Endpoints.order(limit: 100, sorted: "-updatedAt").url, getPublicUserData: false, responseType: GetStudentInformation.self) { response, error in
             if let response = response {
-                completion(response.studentLocationData, nil)
+                completion(response.results, nil)
             } else {
                 completion([], error)
             }
@@ -312,7 +312,7 @@ class ClientUdacityApi {
         let body = createHttpContent(mapString: mapString, mediaURL: mediaURL, position: position)
         taskForPOSTRequest(url: Endpoints.studentLocation.url, getSessionId: false, body: body, responseType: PostStudentLocationResponse.self) { response, error in
             if let response = response {
-                Auth.userId = response.objectId
+                Auth.objectId = response.objectId ?? ""
                 completion(true, nil)
             } else {
                 completion(false, error)

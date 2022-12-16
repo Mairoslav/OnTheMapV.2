@@ -8,7 +8,7 @@
 import Foundation
 
 struct PutUpdateStudentLocationResponse: Codable {
-    let updatedAt: String 
+    let updatedAt: String?
 }
 
 // 7. Parse API: PUTting a Student Location

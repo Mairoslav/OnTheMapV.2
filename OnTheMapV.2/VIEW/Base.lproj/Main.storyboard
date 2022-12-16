@@ -146,12 +146,13 @@
         <!--Tab Bar Controller-->
         <scene sceneID="EVb-OH-A1H">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="8dZ-eL-aMN" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MapTabbedViewController" modalPresentationStyle="fullScreen" id="8dZ-eL-aMN" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8rK-H8-cFK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="EeK-l9-uQP" kind="relationship" relationship="viewControllers" id="hzg-uJ-Aet"/>
@@ -167,17 +168,14 @@
             <objects>
                 <navigationController title="Tab Navigation Controller" id="BY0-8d-67w" userLabel="tableNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="aYg-4a-IET" userLabel="tableTabBarItem">
-                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large" renderingMode="hierarchical-single" variableValue="1">
-                            <hierarchicalColors>
-                                <color red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
+                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large" variableValue="1"/>
+                        <color key="badgeColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H85-CJ-qaf">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="42F-SX-qga" kind="relationship" relationship="rootViewController" id="yKN-Nq-98t"/>
@@ -187,57 +185,76 @@
             </objects>
             <point key="canvasLocation" x="1749" y="303"/>
         </scene>
-        <!--Table Tabbed View-->
+        <!--tableTabbedView-->
         <scene sceneID="eTk-gK-XZP">
             <objects>
-                <viewController title="Table Tabbed View" id="42F-SX-qga" sceneMemberID="viewController">
+                <viewController title="Table Tabbed View" id="42F-SX-qga" userLabel="tableTabbedView" customClass="TableTabbedViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7i2-YH-h9S">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Z66-In-3JD">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
-                                <color key="sectionIndexBackgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YOA-gO-rji">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationTableCell" id="YOA-gO-rji" userLabel="locationTableCell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="142.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YOA-gO-rji" id="tD0-UQ-5gk">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="142.33332824707031"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="13C-xC-ZUj" userLabel="userImage">
+                                                    <rect key="frame" x="20" y="10.999999999999993" width="120" height="120.33333333333331"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="4lY-ao-cHc"/>
+                                                        <constraint firstAttribute="width" constant="120" id="UaJ-Lg-qUx"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB5-8Z-l8H" userLabel="Title">
-                                                    <rect key="frame" x="20" y="7.666666666666667" width="25" height="14.333333333333332"/>
+                                                    <rect key="frame" x="152" y="31" width="25" height="89.666666666666686"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My3-V3-piw" userLabel="Subtitle">
-                                                    <rect key="frame" x="19.999999999999996" y="23" width="40.666666666666657" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My3-V3-piw" userLabel="Subtitle">
+                                                    <rect key="frame" x="152" y="121.66666666666669" width="40.666666666666657" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" systemColor="systemGray3Color"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="cB5-8Z-l8H" firstAttribute="top" secondItem="tD0-UQ-5gk" secondAttribute="topMargin" constant="20" id="5MZ-4h-HV3"/>
+                                                <constraint firstItem="13C-xC-ZUj" firstAttribute="top" secondItem="tD0-UQ-5gk" secondAttribute="topMargin" id="Cii-SO-ZS8"/>
                                                 <constraint firstItem="My3-V3-piw" firstAttribute="top" secondItem="cB5-8Z-l8H" secondAttribute="bottom" constant="1" id="Efj-zC-1v2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="My3-V3-piw" secondAttribute="bottom" constant="-4.3333320617675781" id="Ntf-YP-CpE"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="My3-V3-piw" secondAttribute="trailing" constant="20" symbolic="YES" id="Osf-tg-00e"/>
                                                 <constraint firstItem="My3-V3-piw" firstAttribute="leading" secondItem="cB5-8Z-l8H" secondAttribute="leading" id="RgV-JZ-fcr"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cB5-8Z-l8H" secondAttribute="trailing" constant="20" symbolic="YES" id="fs6-NS-59z"/>
-                                                <constraint firstItem="My3-V3-piw" firstAttribute="leading" secondItem="tD0-UQ-5gk" secondAttribute="leadingMargin" id="pWc-ve-GuC"/>
+                                                <constraint firstItem="cB5-8Z-l8H" firstAttribute="leadingMargin" secondItem="13C-xC-ZUj" secondAttribute="trailing" constant="20" id="lef-ji-EGV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="13C-xC-ZUj" secondAttribute="bottom" id="lhX-l9-B6I"/>
+                                                <constraint firstItem="My3-V3-piw" firstAttribute="leading" secondItem="13C-xC-ZUj" secondAttribute="trailingMargin" constant="20" id="pWc-ve-GuC"/>
+                                                <constraint firstItem="13C-xC-ZUj" firstAttribute="leading" secondItem="tD0-UQ-5gk" secondAttribute="leadingMargin" id="s3z-k9-qfh"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="42F-SX-qga" id="cAF-Ov-EdV"/>
+                                    <outlet property="delegate" destination="42F-SX-qga" id="NWe-KU-IXJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xDW-mb-4Ml"/>
-                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xDW-mb-4Ml" firstAttribute="bottom" secondItem="Z66-In-3JD" secondAttribute="bottom" id="5NM-qh-S8d"/>
                             <constraint firstItem="Z66-In-3JD" firstAttribute="leading" secondItem="xDW-mb-4Ml" secondAttribute="leading" id="TRk-ac-lJl"/>
@@ -255,6 +272,9 @@
                         <rightBarButtonItems>
                             <barButtonItem image="plus.square.on.square" catalog="system" id="xfv-Nm-zKj">
                                 <color key="tintColor" red="0.031372549019607843" green="0.70588235294117641" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addPinTapped:" destination="42F-SX-qga" id="Vu3-q4-wdE"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem image="arrow.clockwise" catalog="system" id="GEs-zG-K8g">
                                 <color key="tintColor" red="0.031372549019607843" green="0.70588235294117641" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -262,6 +282,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="Z66-In-3JD" id="eVk-4Y-XTc"/>
                         <segue destination="EmY-AY-MwV" kind="presentation" identifier="addLocation" id="tln-Sv-7yO"/>
                     </connections>
                 </viewController>
@@ -274,17 +295,13 @@
             <objects>
                 <navigationController title="Map Naviagation Controller" id="EeK-l9-uQP" userLabel="mapNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="w4r-4k-c9H" userLabel="mapTabBarItem">
-                        <imageReference key="image" image="map" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
-                            <hierarchicalColors>
-                                <color red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
+                        <imageReference key="image" image="map" catalog="system" symbolScale="large" variableValue="0.80000000000000004"/>
+                        <color key="badgeColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YY1-IJ-RnL">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="XeI-lY-e7d" kind="relationship" relationship="rootViewController" id="9mT-Ch-WZT"/>
@@ -297,19 +314,22 @@
         <!--mapTabbedView-->
         <scene sceneID="FZ0-yi-3VX">
             <objects>
-                <viewController title="Map Tabbed View" id="XeI-lY-e7d" userLabel="mapTabbedView" customClass="Map" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map Tabbed View" id="XeI-lY-e7d" userLabel="mapTabbedView" customClass="MapTabbedViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZF-wj-qSJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5P-7d-UcI">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XeI-lY-e7d" id="0kN-vF-Vtr"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b6H-Rv-gDZ"/>
-                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="L5P-7d-UcI" firstAttribute="leading" secondItem="b6H-Rv-gDZ" secondAttribute="leading" id="7aL-kS-1CX"/>
                             <constraint firstItem="L5P-7d-UcI" firstAttribute="top" secondItem="b6H-Rv-gDZ" secondAttribute="top" id="g0c-eK-fwL"/>
@@ -325,16 +345,22 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="plus.square.on.square" catalog="system" id="ZXC-vb-EQ9">
+                            <barButtonItem image="plus.square.on.square" catalog="system" id="ZXC-vb-EQ9" userLabel="addPin">
                                 <color key="tintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addPinTapped:" destination="XeI-lY-e7d" id="Rvz-Zx-NJq"/>
+                                </connections>
                             </barButtonItem>
-                            <barButtonItem title="I" image="arrow.clockwise" catalog="system" id="ypQ-zL-Qx4">
+                            <barButtonItem title="I" image="arrow.clockwise" catalog="system" id="ypQ-zL-Qx4" userLabel="refreshStudentPosts">
                                 <color key="tintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="refreshStudentPosts:" destination="XeI-lY-e7d" id="ilu-Sr-Es2"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="L5P-7d-UcI" id="Pl8-2A-slG"/>
+                        <outlet property="mapView" destination="L5P-7d-UcI" id="kKC-2P-dfC"/>
                         <segue destination="EmY-AY-MwV" kind="presentation" identifier="addLocation" id="CsG-wr-HJd"/>
                     </connections>
                 </viewController>
@@ -348,10 +374,10 @@
             </objects>
             <point key="canvasLocation" x="2592" y="-375"/>
         </scene>
-        <!--Information Posting Finish-->
+        <!--Confirm Location-->
         <scene sceneID="YRC-b1-Lh3">
             <objects>
-                <viewController title="Information Posting Finish" id="zU6-Tg-2W0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmLocation" title="Confirm Location" modalPresentationStyle="fullScreen" id="zU6-Tg-2W0" customClass="ConfirmLocationViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="juM-cH-aFe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,8 +388,11 @@
                                 <color key="barTintColor" systemColor="opaqueSeparatorColor"/>
                                 <items>
                                     <navigationItem title="Add Location" id="sl1-K6-fTq" userLabel="addLocation">
-                                        <barButtonItem key="leftBarButtonItem" id="00i-up-EuR" userLabel="cancel">
+                                        <barButtonItem key="leftBarButtonItem" image="icon_back-arrow" id="00i-up-EuR" userLabel="cancel">
                                             <color key="tintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="backToAddLocation:" destination="zU6-Tg-2W0" id="xS8-lg-hqc"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -372,12 +401,15 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSg-cd-AOi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSg-cd-AOi" userLabel="Confirm Location">
                                 <rect key="frame" x="20" y="753" width="353" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Finish">
+                                <buttonConfiguration key="configuration" style="filled" title="Confirm Location">
                                     <color key="baseBackgroundColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="confirmLocationTapped:" destination="zU6-Tg-2W0" eventType="touchUpInside" id="JEF-kI-95H"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="peh-rV-dbC"/>
@@ -396,15 +428,18 @@
                             <constraint firstItem="8O1-gs-X6h" firstAttribute="leading" secondItem="peh-rV-dbC" secondAttribute="leading" id="ssR-Qw-7AD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapViewToConfirmLocation" destination="eSw-el-tI1" id="ZMC-uE-W30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7S-SF-Ao4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4242" y="-27"/>
+            <point key="canvasLocation" x="4170" y="-27"/>
         </scene>
         <!--Information Posting View-->
         <scene sceneID="liW-53-chg">
             <objects>
-                <viewController title="Information Posting View" modalPresentationStyle="fullScreen" id="EmY-AY-MwV" customClass="ViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Information Posting View" modalPresentationStyle="fullScreen" id="EmY-AY-MwV" customClass="AddLocationViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G2d-Il-3Os">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -417,6 +452,9 @@
                                     <navigationItem title="Add Location" id="scF-Jb-PdF" userLabel="addLocation">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="sGX-Nn-Z9T" userLabel="cancel">
                                             <color key="tintColor" red="0.031372549020000001" green="0.70588235290000001" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="cancel:" destination="EmY-AY-MwV" id="YcR-4b-iNf"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -447,14 +485,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeX-9V-L8D" userLabel="FindLocation">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeX-9V-L8D" userLabel="Add Location">
                                         <rect key="frame" x="0.0" y="80" width="353" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="eNI-If-VrU"/>
                                         </constraints>
                                         <color key="tintColor" red="0.031372549019607843" green="0.70588235294117641" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Find Location"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Add Location"/>
+                                        <connections>
+                                            <action selector="addLocation:" destination="EmY-AY-MwV" eventType="touchUpInside" id="PKG-aK-H5S"/>
+                                        </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vpK-Tb-wAu">
                                         <rect key="frame" x="0.0" y="120" width="353" height="100"/>
@@ -479,6 +520,12 @@
                             <constraint firstItem="9EE-aV-We4" firstAttribute="leading" secondItem="tlc-9G-4Pq" secondAttribute="leading" constant="20" id="z91-fh-8QE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vpK-Tb-wAu" id="Bn4-fK-2eq"/>
+                        <outlet property="addLocationButton" destination="jeX-9V-L8D" id="sTT-9n-3q1"/>
+                        <outlet property="locationTextField" destination="jCM-S7-cKK" id="vyG-ao-bMZ"/>
+                        <outlet property="urlTextField" destination="sbY-9v-52J" id="p0d-XK-32S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9S7-kS-Fet" sceneMemberID="firstResponder"/>
             </objects>
@@ -486,11 +533,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CsG-wr-HJd"/>
+        <segue reference="tln-Sv-7yO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="greyLine" width="141" height="1"/>
+        <image name="icon_back-arrow" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="logo-u" width="62" height="62"/>
@@ -504,12 +552,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

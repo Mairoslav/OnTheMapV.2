@@ -1,5 +1,5 @@
 //
-//  Map.swift
+//  MapTabbedViewController.swift
 //  OnTheMapV.2
 //
 //  Created by mairo on 09/12/2022.
@@ -9,17 +9,18 @@
 import UIKit
 import MapKit
 
-class Map: UIViewController, MKMapViewDelegate {
+class MapTabbedViewController: UIViewController, MKMapViewDelegate {
     
-    // note that view controller is set up to the map view's delegate
-    @IBOutlet weak var mapView: MKMapView!
+    // MARK: Outlet
+    @IBOutlet weak var mapView: MKMapView! // // note that view controller is set up to the map view's delegate
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadLocations()
     }
     
-    // download the 100 most recent locations posted by students
+    // MARK: downloadLocations()
     func downloadLocations() {
         ClientUdacityApi.getStudentInformation { studentLocation, error in
             if error == nil {
@@ -32,6 +33,7 @@ class Map: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // MARK: createPointAnnotation()
     func createPointAnnotation() {
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON
@@ -82,7 +84,7 @@ class Map: UIViewController, MKMapViewDelegate {
     // method in TableViewDataSource.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        let reuseId = "pin"
+        let reuseId = "pinBalloon"
         
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKMarkerAnnotationView
 
@@ -111,3 +113,6 @@ class Map: UIViewController, MKMapViewDelegate {
         }
     }
 }
+
+// MARK: Main.storyboard set up
+// option + 2fingerClick on Map View / drag&drop delegate to MapTabbedView

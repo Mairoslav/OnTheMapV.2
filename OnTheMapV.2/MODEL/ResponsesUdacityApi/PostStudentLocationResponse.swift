@@ -9,8 +9,8 @@ import Foundation
 
 struct PostStudentLocationResponse: Codable {
     
-    let createdAt: String
-    let objectId: String
+    let createdAt: String?
+    let objectId: String?
     
 }
 
