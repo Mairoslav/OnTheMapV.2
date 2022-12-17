@@ -91,7 +91,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
         if pinView == nil {
             pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.tintColor = .red
+            pinView!.tintColor = .blue 
             pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         else {

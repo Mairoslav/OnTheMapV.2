@@ -45,8 +45,12 @@ extension TableTabbedViewController: UITableViewDataSource, UITableViewDelegate 
         
         var cellContent = cell.defaultContentConfiguration() // configure and Customize content of cell
         cellContent.text = "\(studentPost.firstName) \(studentPost.lastName)"
+        cellContent.textProperties.font = .boldSystemFont(ofSize: 14.0)
+        cellContent.textProperties.color = .black
         cellContent.secondaryText = "\(studentPost.mediaURL)"
+        cellContent.secondaryTextProperties.color = .systemGray
         cellContent.image = UIImage(named: "Apps-Github")
+        cellContent.imageProperties.maximumSize = CGSize(width: 80, height: 80)
         
         cell.contentConfiguration = cellContent
         return cell
