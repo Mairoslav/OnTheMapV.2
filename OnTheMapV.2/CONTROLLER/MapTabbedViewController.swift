@@ -12,33 +12,35 @@ import MapKit
 class MapTabbedViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Outlet
-    @IBOutlet weak var mapView: MKMapView! // // note that view controller is set up to the map view's delegate
+    @IBOutlet weak var mapView: MKMapView! // note that view controller is set up to the map view's delegate
     
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadLocations()
+        print("🔳 MapTabbedView was re/loaded")
     }
     
     // MARK: downloadLocations()
     func downloadLocations() {
         ClientUdacityApi.getStudentInformation { studentLocation, error in
             if error == nil {
-                studentInformationModel.studentLocation = studentLocation
+                StudentInformationModel.studentLocation = studentLocation // B.11. table is sorted in order of most recent to oldest update because of calling method getStudentInformation line above and assigning studentLocation to StudentInformationModel.studentLocation. In ".studentsLocation" we store array of "GetStudentInformation" struct/s. StudentInformationModel.studentLocation is returned in tableView methods within TableTabbedViewController.swift. Therefore no need to tableView.reloadData() in ViewDidLoad() within TableTabbedViewController.swift. Only makes sense to press refresh button in case to check whether any other students did post new locations since the time that user is logged in. 
                 self.createPointAnnotation()
-                // self.mapView.addAnnotation(self.annotations) // if kept, then locate var annotations to global scope
+                print("🔳 100 most recent students posts were downloaded via calling getStudentInformation and createPointAnnotation() methods in func downloadLocations() within MapTabbedViewController.swift")
             } else {
-                self .showAlertMessage(title: "Download Failed", message: error?.localizedDescription ?? "")
+                self .showAlertMessage(title: "Download Failed", message: error?.localizedDescription ?? "defaultNil") // B.5 the app handles a failure to download student locations
             }
         }
     }
     
     // MARK: createPointAnnotation()
+    // B.7. The map view has a pin for each student in the correct location
     func createPointAnnotation() {
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
-        let locations = studentInformationModel.studentLocation
+        let locations = StudentInformationModel.studentLocation
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations will be stored in this array, and then provided to the map view.
@@ -73,7 +75,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
         }
         
         // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
+        self.mapView.addAnnotations(annotations) // B.8. Tapping the pins shows an annotation with the student's name and the link the student posted.
         
     }
     
@@ -108,7 +110,8 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             // let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                openURLLink(urlString: toOpen)
+                openURLLink(urlString: toOpen) // B.9. If the pin annotation is tapped, is the link opened in Safari
+                print("🔳 Annotation/pin infoIcon was tapped ")
             }
         }
     }

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "Apps-Itsycal.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iconmonstr-line-one-horizontal-lined.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },

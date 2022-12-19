@@ -22,12 +22,13 @@ class AddLocationViewController: UIViewController {
     
     // MARK: actions
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil) // returns to previous view ~ tabbedView
+        dismiss(animated: true, completion: nil) // returning to previous view ~ tabbedView-Map/Table
+        print("🔳 Returning to previous map/tab-tabbed view via cancel button")
     }
     
     @IBAction func addLocation(_ sender: UIButton) {
         addLocationLoading(true)
-        locationToCoordinates(typedLocationString: self.locationTextField.text ?? "", completion: (addLocationResponse(locationCoordinates:error:))) // adding Location String and handling transfer to gps coordinates in completionHandler
+        locationToCoordinates(typedLocationString: self.locationTextField.text ?? "defaultNil", completion: (addLocationResponse(locationCoordinates:error:))) // adding Location String and handling transfer to gps coordinates in completionHandler
     }
     
     // MARK: locationToCoordinates
@@ -52,14 +53,15 @@ class AddLocationViewController: UIViewController {
             let segueToConfirmLocationVC = storyboard?.instantiateViewController(withIdentifier: "confirmLocation") as! ConfirmLocationViewController
             
             // transfers values on location and url to next view controller
-            segueToConfirmLocationVC.locationName = self.locationTextField.text ?? ""
-            segueToConfirmLocationVC.urlLink = self.urlTextField.text ?? ""
+            segueToConfirmLocationVC.locationName = self.locationTextField.text ?? "defaultNil"
+            segueToConfirmLocationVC.urlLink = self.urlTextField.text ?? "defaultNil"
             segueToConfirmLocationVC.latitude = locationCoordinates.latitude
             segueToConfirmLocationVC.longitude = locationCoordinates.longitude
             
             present(segueToConfirmLocationVC, animated: true, completion: nil) // and present it
+            print("🔳 New location was added, and is to be confirmed")
         } else {
-            showAlertMessage(title: "Adding Location Failed", message: "Location has not been Found, try again.")
+            showAlertMessage(title: "Adding Location Failed", message: error?.localizedDescription ?? "defaultNil")
         }
     }
     

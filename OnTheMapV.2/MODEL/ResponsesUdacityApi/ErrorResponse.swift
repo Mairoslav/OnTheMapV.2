@@ -9,7 +9,7 @@ import Foundation
 
 struct ErrorResponse: Codable {
     let status: Int
-    let error: String
+    let error: String 
 }
 
 extension ErrorResponse: LocalizedError {

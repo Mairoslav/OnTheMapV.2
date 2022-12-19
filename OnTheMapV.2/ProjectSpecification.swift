@@ -14,12 +14,12 @@ import Foundation
 // A.1.
 // CRITERIA: Does the app allow the user to login?
 // MEETS SPECIFICATIONS: The app has a login view that accepts email and password strings from users, with a “Login” button.
-// YES
+// TODO: file LoginViewController.swift & ClientUdacityApi.swift class func login
 
 // A.2.
 // CRITERIA: Does the app notify the user if the login fails?
 // MEETS SPECIFICATIONS: The app informs the user if the login fails. It differentiates between a failure to connect, and incorrect credentials (i.e., wrong email or password).
-// ... NO
+// TODO: file LoginViewController.swift
 
 
 // MARK: Student Locations Tabbed View
@@ -27,62 +27,62 @@ import Foundation
 // B.1.
 // CRITERIA: Does the app download locations and links previously posted by students? (to be displayed in the Map and Table tabs)
 // MEETS SPECIFICATIONS: The app downloads the 100 most recent locations posted by students.
-// WORKING ON ... see "case .limit(let xLastPostedLocations):"
+// TODO: file ClientUdacityApi.swift, class func getStudentInformation
 
 // B.2.
 // CRITERIA: Does the app contain a "StudentInformation" struct to store individual locations and links downloaded from the service?
 // MEETS SPECIFICATIONS: The app contains a StudentInformation struct with appropriate properties for locations and links.
-// YES check file "StudentInformation.swift"
+// TODO: file GetStudentInformation.swift
 
 // B.3.
 // CRITERIA: Does the "StudentInformation" struct initialize instances from a dictionary?
 // MEETS SPECIFICATIONS: The struct has an init() method that accepts a dictionary as an argument, or the struct conforms to the Codable protocol (2nd is valid).
-// YES check file "StudentInformationModel.swift"
+// TODO: file StudentInformationModel.swift
 
 // B.4.
 // CRITERIA: Does the app store the array of StudentInformation structs in a single location, outside of the view controllers?
 // MEETS SPECIFICATIONS: The "StudentInformation" structs are stored as an array (or other suitable data structure) inside a separate model class.
-// YES check file "StudentInformationModel.swift"
+// TODO: file StudentInformationModel.swift
 
 // B.5.
 // CRITERIA: Does the app inform the user if the download fails?
 // MEETS SPECIFICATION: The app gracefully handles a failure to download student locations.
-// ... NOT
+// TODO: file MapTabbedViewController.swift func downloadLocations()
 
 // B.6.
 // CRITERIA: Does the app correctly display the downloaded data in a tabbed view?
 // MEETS SPECIFICATION: The app displays downloaded data in a tabbed view with two tabs: a map and a table.
-// ... NOT
+// TODO: file MapTabbedViewController.swift and TableTabbedViewController.swift
 
 // B.7.
 // CRITERIA: Does the map view contain a pin for each of the locations that were downloaded?
 // MEETS SPECIFICATION: The map view has a pin for each student in the correct location.
-// ... NOT
+// TODO: MapTabbedViewController.swift createPointAnnotation()
 
 // B.8.
 // CRITERIA: When the pins in the map are tapped, is a pin annotation displayed with the relevant information?
 // MEETS SPECIFICATION: Tapping the pins shows an annotation with the student's name and the link the student posted.
-// ... NOT
+// TODO: MapTabbedViewController.swift self.mapView.addAnnotations(annotations)
 
 // B.9.
 // CRITERIA: If the pin annotation is tapped, is the link opened in Safari?
 // MEETS SPECIFICATION: Tapping a student’s pin annotation opens the student’s link in Safari or a web view.
-// ... NOT
+// TODO: MapTabbedViewController.swift calling method openURLLink within func mapView
 
 // B.10.
 // CRITERIA: Does the table view contain a row for each downloaded location, with the student’s name displayed?
 // MEETS SPECIFICATION: The table view has a row for each downloaded record with the student’s name displayed.
-// ... NOT
+// TODO: TableTabbedViewController.swift func tableView numberOfRowsInSection & cellForRowAt
 
 // B.11.
 // CRITERIA: Is the table appropriately sorted?
 // MEETS SPECIFICATION: The table is sorted in order of most recent to oldest update.
-// ... NOT
+// TODO: as per B.1. file ClientUdacityApi.swift, class func getStudentInformation passing in "Endpoints.order(limit: 100, sorted: "-updatedAt").url" is called in MapTabbedViewController.swift func downloadLocations(), here assigning studentLocation to StudentInformationModel.studentLocation. In ".studentsLocation" we store array of "GetStudentInformation" struct/s. And StudentInformationModel.studentLocation is returned in tableView methods within TableTabbedViewController.swift
 
 // B.12.
 // CRITERIA: When a row in the table is tapped, does the app open Safari to the student’s link?
 // MEETS SPECIFICATION: Tapping a row in the table opens the default device browser to the student's link.
-// ... NOT
+// TODO: TableTabbedViewController.swift calling method openURLLink within func tableView
 
 // B.13.
 // CRITERIA: Does the Student Locations Tabbed View have a pin button in the appropriate location?
@@ -179,3 +179,10 @@ import Foundation
 // CRITERIA: Does the JSON parsing code use Swift's built-in JSON parsing capabilities?
 // MEETS SPECIFICATION: The JSON parsing code uses Swift's built-in JSONSerialization library or Codable, not a third-party framework.
 // ... NOT
+
+// next TODO: 
+// 1. figure out how to zoom gradually animated in swift 5, XCode
+// 2. make print() outs in debuger after execution of POST, GET, PUT requeests\
+// 3. make print() outs for pair/values / or include these in current print() outs ...
+// 4. make print() outs also for opening urls ... othere operations ...
+// 5. consolidate constraitns so reduce degub info ...

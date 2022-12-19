@@ -8,8 +8,20 @@
 import Foundation
 import UIKit
 
-class TableTabbedViewController: UIViewController {
+// MARK: create a custom table view cell
+// cell that contains image, title and subtitle
+class TableViewCell: UITableViewCell {
+    // for "Table View Cell" in Identity Inspector under Custom Class/Class write "TableViewCell" ~ as per name of this Class
+    static let identifier = "locationTableCell"
     
+    // the objects we need:
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
+}
+
+class TableTabbedViewController: UIViewController {
     
     // MARK: outlet
     @IBOutlet weak var tableView: UITableView!
@@ -17,13 +29,8 @@ class TableTabbedViewController: UIViewController {
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
-    }
-    
-    // MARK: viewWillAppear
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+        // tableView.reloadData() // table is updated also without this line, see comment B.11. in MapTabbedViewController.swift
+        print("🔳 TableTabbedView was selected first time and re/loaded") // note that once data are downloaded within MapTabbedView, after first time opening the TableTabbedView they are re/loaded also here.
     }
 }
     
@@ -32,35 +39,29 @@ extension TableTabbedViewController: UITableViewDataSource, UITableViewDelegate 
     // MARK: 1. tableView numberOfRowsInSection
     // to determine the number of rows in Table View based on .count
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentInformationModel.studentLocation.count
+        return StudentInformationModel.studentLocation.count 
     }
     
     // MARK: 2.a tableView cellForRowAt integrating custom table view cell
     // to fill our cells with data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "locationTableCell") ?? UITableViewCell()
         
-        // let studentPost = studentInformationModel.studentLocation[(indexPath as NSIndexPath).row]
-        let studentPost = studentInformationModel.studentLocation[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationTableCell", for: indexPath) as? TableViewCell else {return UITableViewCell()}
         
-        var cellContent = cell.defaultContentConfiguration() // configure and Customize content of cell
-        cellContent.text = "\(studentPost.firstName) \(studentPost.lastName)"
-        cellContent.textProperties.font = .boldSystemFont(ofSize: 14.0)
-        cellContent.textProperties.color = .black
-        cellContent.secondaryText = "\(studentPost.mediaURL)"
-        cellContent.secondaryTextProperties.color = .systemGray
-        cellContent.image = UIImage(named: "Apps-Github")
-        cellContent.imageProperties.maximumSize = CGSize(width: 80, height: 80)
+        let studentPost = StudentInformationModel.studentLocation[indexPath.row]
         
-        cell.contentConfiguration = cellContent
+        cell.userImage.image = UIImage(named: "Apps-Itsycal")
+        cell.titleLabel.text = "\(studentPost.firstName) \(studentPost.lastName)" // B.10. table view has a row for each downloaded record with the student’s name displayed
+        cell.subtitleLabel.text = "\(studentPost.mediaURL)"
+        
         return cell
     }
     
     // MARK: 3. tableView didSelectRowAt
     // detail shown when selecting row ~ url is opened
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let studentPost = studentInformationModel.studentLocation[indexPath.row]
-        openURLLink(urlString: studentPost.mediaURL)
+        let studentPost = StudentInformationModel.studentLocation[indexPath.row]
+        openURLLink(urlString: studentPost.mediaURL) // B.12. When a row in the table is tapped, does the app open Safari to the student’s link
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
