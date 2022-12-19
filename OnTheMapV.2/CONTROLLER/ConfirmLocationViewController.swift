@@ -14,9 +14,11 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: properties
     var locationName: String!
     var urlLink: String!
-    var addedGpsLocation: CLLocation!
+    // var addedGpsLocation: CLLocation!
+    var addedGpsLocation: CLLocationCoordinate2D!
     var latitude: Double!
     var longitude: Double!
+    
     
     // MARK: viewDidLoad()
     override func viewDidLoad() {
@@ -45,8 +47,10 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: zoomAndDropPin
     func zoomAndDropPin() {
-        addedGpsLocation = CLLocation(latitude: latitude, longitude: longitude) // drop pin to xy gps location
-        zoomIn(addedGpsLocation, 50_000, 50_000) // 1_000 by default set in zoomIn method
+        // addedGpsLocation = CLLocation(latitude: latitude, longitude: longitude) // drop pin to xy gps location
+        // zoomIn(addedGpsLocation, 50_000, 50_000) // 1_000 by default set in zoomIn method
+        addedGpsLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        zoomIn(addedGpsLocation)
         let pinLocationToConfirm = PinLocationToConfirm(locationName: locationName, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         mapViewToConfirmLocation.addAnnotation(pinLocationToConfirm)
     }
@@ -64,9 +68,22 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: zoomIn
-    func zoomIn(_ location: CLLocation, _ spanInMetersLatidute: CLLocationDistance = 1_000, _ spanInMetersLongitute: CLLocationDistance = 1_000) {
-        let zoomedLocation = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: spanInMetersLatidute, longitudinalMeters: spanInMetersLongitute)
-        self.mapViewToConfirmLocation.setRegion(zoomedLocation, animated: true)
-        // self.mapViewToConfirmLocation.setCameraZoomRange(zoomedLocation, animated: true)
+    // func zoomIn(_ location: CLLocationCoordinate2D, _ spanInMetersLatidute: CLLocationDistance = 1_000, _ spanInMetersLongitute: CLLocationDistance = 1_000) { // instead of CLLocation -> CLLocationCoordinate2D
+    
+    func zoomIn(_ location: CLLocationCoordinate2D) {
+        
+        // if let location = addedGpsLocation {
+            let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            
+            // let region = MKCoordinateRegion(center: center, latitudinalMeters: spanInMetersLatidute, longitudinalMeters: spanInMetersLongitute)
+            
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            
+            // let zoomedLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            
+            mapViewToConfirmLocation.setRegion(region, animated: true)
+            // mapViewToConfirmLocation.setCameraZoomRange(<#T##cameraZoomRange: MKMapView.CameraZoomRange?##MKMapView.CameraZoomRange?#>, animated: <#T##Bool#>)
+            // mapViewToConfirmLocation.setCenter(zoomedLocation, animated: true)
+        // }
     }
 }

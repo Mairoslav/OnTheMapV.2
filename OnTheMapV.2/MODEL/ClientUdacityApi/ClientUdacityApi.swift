@@ -12,8 +12,8 @@ import MapKit
 class ClientUdacityApi {
     
     struct Auth {
-        static var userId = ""
-        static var objectId = ""
+        static var userId = "" //
+        static var objectId = "" // identify student location
         static var firstName = ""
         static var lastName = ""
         static var sessionId = ""
@@ -24,19 +24,19 @@ class ClientUdacityApi {
     enum Endpoints {
         
         // MARK: URL components
-        static let base = "https://onthemap-api.udacity.com/v1"
+        static let basePath = "https://onthemap-api.udacity.com/v1"
         static let studentLocationPath = "/StudentLocation"
-        static let sessionPath = "/session"
-        static let userIdPath = "/users"
+        static let sessionIdPath = "/session"
+        static let publicUserDataPath = "/users"
         
         
         // MARK: Parse Api
         // 5. Parse API: GETting Student Locations - To get multiple student locations at one time, you'll want to use the following API method: https://onthemap-api.udacity.com/v1/StudentLocation Optional parameter: limit, skip, order, uniqueKey(only limit and order are applied). Method type: GET.
         case studentLocation // get multiple student locations at one time
         case limit(Int) // app downloads the (100) most recent locations posted by students.
-        // case skip(Int, Int) // limit to paginate through results
+        // case skip(Int, Int) // limit to paginate through results, not used at all
         case order(limit: Int, sorted: String) // get users location list, see "getStudentInformation"
-        // case uniqueKey // Gets only student locations with a given user ID, no need because user IDs are randomized
+        // case uniqueKey // Gets only student locations with a given user ID, no need because user IDs are randomized. Note that even though not used as .case for url (~Endpoints.uniqueKey no used), still it is left in struct KeyValuePairs so that can be assigned Auth.userId in clacc func createHttpContent.
         case objectId // identify student location
         
         // 9. Udacity API: POSTing a Session. To authenticate Udacity API requests, you need to *get a session ID. This is accomplished by using Udacity’s session method: https://onthemap-api.udacity.com/v1/session Required Parameters: dictionary let udacity["username": String, "password": String] as per LoginRequest.swift struct
@@ -47,22 +47,22 @@ class ClientUdacityApi {
         var stringValue: String {
             switch self {
                 case .studentLocation:
-                    return Endpoints.base + Endpoints.studentLocationPath // To get multiple student locations at one time, use the following API method: see link composed of base + studentLocationPath. Method type: GET. Optional parameter: limit, skip, order, uniqueKey (see code below)
+                    return Endpoints.basePath + Endpoints.studentLocationPath // To get multiple student locations at one time, use the following API method: see link composed of base + studentLocationPath. Method type: GET. Optional parameter: limit, skip, order, uniqueKey (see code below)
                 case .limit(let xyLastPostedLocations):
-                    return Endpoints.base + Endpoints.studentLocationPath + "?limit=\(xyLastPostedLocations)" // limit - (Number) specifies the maximum number of StudentLocation objects to return in the JSON response. Example: URL + "?limit=100"
+                    return Endpoints.basePath + Endpoints.studentLocationPath + "?limit=\(xyLastPostedLocations)" // limit - (Number) specifies the maximum number of StudentLocation objects to return in the JSON response. Example: URL + "?limit=100"
                 // case .skip(let xyLastPostedLocations, let limitToPaginate):
                     // return Endpoints.base + Endpoints.studentLocationPath + "?limit=\(xyLastPostedLocations)" + "&skip=\(limitToPaginate)" // skip - (Number) use this parameter with limit to paginate through results. Example: URL + "?limit=200&skip=400"
                 case .order(let xyLastPostedLocations, let keyName):
-                    return Endpoints.base + Endpoints.studentLocationPath + "?limit=\(xyLastPostedLocations)" + "&order=\(keyName)" // order - (String) a comma-separate list of key names that specify the sorted order of the results. Prefixing a key name (e.g. updatedAt) with a negative sign reverses the order (default order is ascending). Example: URL + "?order=-updatedAt"
+                    return Endpoints.basePath + Endpoints.studentLocationPath + "?limit=\(xyLastPostedLocations)" + "&order=\(keyName)" // order - (String) a comma-separate list of key names that specify the sorted order of the results. Prefixing a key name (e.g. updatedAt) with a negative sign reverses the order (default order is ascending). Example: URL + "?order=-updatedAt"
                 // case .uniqueKey:
                     // return Endpoints.base + Endpoints.studentLocationPath + "?uniqueKey=\(Auth.userId)" // uniqueKey - (String) a unique key (user ID). Gets only student locations with a given user ID. Filtering by the user ID can be useful if the user has already posted a location (for example, pre-filling the location field). You probably won't need this since the user IDs are randomized. Example: URL + "?uniqueKey=1234"
                 case .objectId:
-                    return Endpoints.base + Endpoints.studentLocationPath + "/\(Auth.objectId)" // objectId: an auto-generated id/key generated by Parse which uniquely identifies a StudentLocation
+                    return Endpoints.basePath + Endpoints.studentLocationPath + "/\(Auth.objectId)" // objectId: an auto-generated id/key generated by Parse which uniquely identifies a StudentLocation
                
                 case .sessionId:
-                    return Endpoints.base + Endpoints.sessionPath // https://onthemap-api.udacity.com/v1/session sessionId: used for log-in/out
+                    return Endpoints.basePath + Endpoints.sessionIdPath // https://onthemap-api.udacity.com/v1/session sessionId: used for log-in/out
                 case .publicUserData:
-                    return Endpoints.base + Endpoints.userIdPath + "/\(Auth.userId)" // retireve/get random/fake user data/IDs (see above comment for "uniqueKey") before they are posted/parsed
+                    return Endpoints.basePath + Endpoints.publicUserDataPath + "/\(Auth.userId)" // retireve/get random/fake user data/IDs (see above comment for "uniqueKey") before they are posted/parsed
             }
         }
         var url: URL {
@@ -321,7 +321,7 @@ class ClientUdacityApi {
     }
     
     // MARK: postStudentLocation
-    class func postStudentLocation(mapString: String, mediaURL: String, position: CLLocation, completion: @escaping (Bool, Error?) -> Void) {
+    class func postStudentLocation(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?, completion: @escaping (Bool, Error?) -> Void) {
         let body = createHttpContent(mapString: mapString, mediaURL: mediaURL, position: position)
         taskForPOSTRequest(url: Endpoints.studentLocation.url, getSessionId: false, body: body, responseType: PostStudentLocationResponse.self) { response, error in
             if let response = response {
@@ -334,7 +334,7 @@ class ClientUdacityApi {
     }
     
     // MARK: updateData
-    class func updateUserInformation(mapString: String, mediaURL: String, position: CLLocation, completion: @escaping (Bool, Error?) -> Void) {
+    class func updateUserInformation(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?, completion: @escaping (Bool, Error?) -> Void) {
         let body = createHttpContent(mapString: mapString, mediaURL: mediaURL, position: position)
         taskForPUTRequest(url: Endpoints.objectId.url, getSessionId: false, body: body, responseType: PutUpdateStudentLocationResponse.self) { response, error in
             if response != nil {
@@ -362,16 +362,16 @@ class ClientUdacityApi {
         }
     }
     
-    class func createHttpContent(mapString: String, mediaURL: String, position: CLLocation) -> GetStudentInformation.KeyValuePairs {
+    class func createHttpContent(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?) -> GetStudentInformation.KeyValuePairs {
         let body = GetStudentInformation.KeyValuePairs (
             objectId: nil,
-            uniqueKey: Auth.userId,
+            uniqueKey: Auth.userId, // uniqueKey: key used to uniquely identify a StudentLocation; you should populate this value using your Udacity account id ~ userId. Note that even though not used as .case for url (~Endpoints.uniqueKey no used), still it is left in struct KeyValuePairs so that can be assigned Auth.userId in clacc func createHttpContent.
             firstName: Auth.firstName,
             lastName: Auth.lastName,
-            mapString: mapString,
-            mediaURL: mediaURL,
-            latitude: position.coordinate.latitude,
-            longitude: position.coordinate.longitude,
+            mapString: mapString, // provided by user
+            mediaURL: mediaURL, // provided by user
+            latitude: position?.latitude ?? 00.0, // gps information reported by the system based on provided mapString
+            longitude: position?.longitude ?? 00.0,
             createdAt: nil,
             updatedAt: nil
         )
