@@ -11,6 +11,7 @@ import UIKit
 extension UIViewController {
     
     // MARK: addPinTapped
+    // B.14. pin button in the navigation bar allow users to post their own information to the server
     @IBAction func addPinTapped(_ sender: UIBarButtonItem) {
         print("🔳 addPinTapped")
         // locationAlreadyPosted is true in case of non empty String without objectId
@@ -94,9 +95,11 @@ extension UIViewController {
     }
     
     // MARK: logout
+    // B.16. The logout button causes the Student Locations Tabbed View to dismiss, and logs out of the current session.
     @IBAction func logoutTapped(_sender: UIBarButtonItem) {
-        // logout method needs to be called of full and secure logout
+        // logout method declared in ClientUdacityApi.swift needs to be called to log out of the current session ~ full and secure logout
         ClientUdacityApi.logout { success, error in
+            // if log out of the current session successful, LoginViewController is presented
             if success {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginView")

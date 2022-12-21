@@ -87,22 +87,22 @@ import Foundation
 // B.13.
 // CRITERIA: Does the Student Locations Tabbed View have a pin button in the appropriate location?
 // MEETS SPECIFICATION: The Student Locations Tabbed View has a pin button in the upper right corner of the navigation bar.
-// ... NOT
+// TODO: Main.storyboard both Map and Table TabbedView
 
 // B.14.
 // CRITERIA: Does the pin button in the navigation bar allow users to post their own information to the server?
 // MEETS SPECIFICATION: The button presents the Information Posting View so that users can post their own information to the server.
-// ... NOT
+// TODO: @IBAction func addPinTapped in UIViewController+Extension.swift
 
 // B.15.
 // CRITERIA: Does the app have a logout button in the appropriate location?
 // MEETS SPECIFICATION: The Student Locations Tabbed View has a logout button in the upper left corner of the navigation bar.
-// ... NOT
+// TODO: Main.storyboard both Map and Table TabbedView
 
 // B.16.
 // CRITERIA: Does the logout button work as intended?
 // MEETS SPECIFICATION: The logout button causes the Student Locations Tabbed View to dismiss, and logs out of the current session.
-// ... NOT
+// TODO: class func logout in ClientUdacityApi.swift is called in @IBAction func logoutTapped within UIViewController+Extension.swift
 
 
 // MARK: Information Posting View
@@ -110,57 +110,57 @@ import Foundation
 // C.1.
 // CRITERIA: Does the Information Posting View clearly indicate that the user should enter a location?
 // MEETS SPECIFICATION: The Information Posting view prompts users to enter a string representing their location.
-// ... NOT
+// TODO: Main.storyboard textFields
 
 // C.2.
 // CRITERIA: Does the Information Posting View clearly provide a place for the user to enter a string?
 // MEETS SPECIFICATION: The text view or text field where the location string should be typed is clearly present.
-// ... NOT
+// TODO: Main.storyboard textFields
 
 // C.3.
 // CRITERIA: Does the app allow users to enter a URL to be included with their location?
 // MEETS SPECIFICATION: The app allows users to add a URL to be included with their location.
-// ... NOT
+// TODO: Main.storyboard textFields
 
 // C.4.
 // CRITERIA: Does the app provide a button for the user to post the information to the server?
 // MEETS SPECIFICATION: The app provides a readily accessible "Submit" button that the user can tap to post the information to the server.
-// ... NOT
+// TODO: "Add Location" button
 
 // C.5.
 // CRITERIA: Does the app geocode an address string when the submit button is tapped?
 // MEETS SPECIFICATION: When a "Submit" button is pressed, the app forward geocodes the address string and stores the resulting latitude and longitude. Foward geocoding can be accomplished using CLGeocoder's geocodeAddressString() or MKLocalSearch's startWithCompletionHandler().
-// ... NOT
+// TODO: via calling func locationToCoordinates (and func addLocationResponse in its completion handler ~ for segue to next cofnirmation screen) within @IBAction func addLocation
 
 // C.6.
 // CRITERIA: Does the app indicate activity during the geocoding?
 // MEETS SPECIFICATION: An activity indicator is displayed during geocoding, and returns to normal state on completion.
-// ... NOT
+// TODO: via func addLocationLoading within AddLocationViewController.swift
 
 // C.7.
 // CRITERIA: Does the app notify the user if the geocoding fails?
 // MEETS SPECIFICATION: The app informs the user if the geocoding fails.
-// ... NOT
+// TODO: calling func showAlertMessage in func addLocationResponse within AddLocationViewController.swift
 
 // C.8.
 // CRITERIA: Does the app properly show the geocoded response on a map?
 // MEETS SPECIFICATION: The app shows a placemark on a map via the geocoded response. The app zooms the map into an appropriate region.
-// ... NOT
+// TODO: func zoomAndDropPin() within ConfirmLocationViewController.swift
 
 // C.9.
 // CRITERIA: Does the app post the search string and coordinates to the RESTful service?
 // MEETS SPECIFICATION: The app successfully encodes the data in JSON and posts the search string and coordinates to the RESTful service.
-// ... NOT
+// TODO: class func createHttpContent and it call within class func updateUserInformation and class func postStudentLocation in ClientUdacityApi.swift
 
 // C.10.
 // CRITERIA: Does the app readily allow the user to dismiss the Information Posting View?
 // MEETS SPECIFICATION: The app provides a readily accessible button that the user can tap to cancel (dismiss) the Information Posting View.
-// ... NOT
+// TODO: @IBAction func cancel in AddLocationViewController.swift
 
 // C.11.
 // CRITERIA: Does the app notify the user if the post fails?
 // MEETS SPECIFICATION: The app inform the user if the post fails.
-// ... NOT
+// TODO: func addLocationResponse in AddLocationViewController.swift and func confirmLocationResponse in ConfirmLocationViewController.swift
 
 
 // MARK: D) Networking Architecture
@@ -168,21 +168,20 @@ import Foundation
 // D.1.
 // CRITERIA: Is the networking and JSON parsing code placed in its own class?
 // MEETS SPECIFICATION: The networking and JSON parsing code is located in a dedicated API client class (and not, for example, inside a view controller). The class uses closures for completion and error handling.
-// ... NOT
+// TODO: ClientUdacityApi.swift
 
 // D.2.
 // CRITERIA: Does the networking code use Swift's built-in "URLSession" class?
 // MEETS SPECIFICATION: The networking code uses Swift's built-in URLSession library, not a third-party framework.
-// ... NOT
+// TODO: class funcs taskForGETRequest, taskForPOSTRequest, taskForPUTRequest, taskForDELETERequest
 
 // D.3.
 // CRITERIA: Does the JSON parsing code use Swift's built-in JSON parsing capabilities?
 // MEETS SPECIFICATION: The JSON parsing code uses Swift's built-in JSONSerialization library or Codable, not a third-party framework.
-// ... NOT
+// TODO: conformance to Codable
 
-// next TODO: 
-// 1. figure out how to zoom gradually animated in swift 5, XCode
-// 2. make print() outs in debuger after execution of POST, GET, PUT requeests\
-// 3. make print() outs for pair/values / or include these in current print() outs ...
-// 4. make print() outs also for opening urls ... othere operations ...
-// 5. consolidate constraitns so reduce degub info ...
+
+
+
+
+

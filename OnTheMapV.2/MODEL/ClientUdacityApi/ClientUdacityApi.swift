@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import MapKit
 
+// D.1. networking and JSON parsing code placed in its own class
 class ClientUdacityApi {
     
     struct Auth {
@@ -76,7 +77,7 @@ class ClientUdacityApi {
     // Optional Parameters: limit, skip, order, uniqueKey
     // 11. Udacity API: GETting Public User Data - The whole purpose of using Udacity's API is to retrieve some basic user information before posting data to Parse. This is accomplished by using Udacity’s user method: "https://onthemap-api.udacity.com/v1/users/<user_id>", see ".publicUserData" case. (newData)
     @discardableResult class func taskForGETRequest<ResponseType: Decodable>(url: URL, getPublicUserData: Bool, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask {
-        
+        // D.2. networking code use Swift's built-in "URLSession" class
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
@@ -321,7 +322,7 @@ class ClientUdacityApi {
     }
     
     // MARK: postStudentLocation
-    class func postStudentLocation(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?, completion: @escaping (Bool, Error?) -> Void) {
+    class func postStudentLocation(mapString: String, mediaURL: String, position: CLLocation, completion: @escaping (Bool, Error?) -> Void) {
         let body = createHttpContent(mapString: mapString, mediaURL: mediaURL, position: position)
         taskForPOSTRequest(url: Endpoints.studentLocation.url, getSessionId: false, body: body, responseType: PostStudentLocationResponse.self) { response, error in
             if let response = response {
@@ -334,7 +335,7 @@ class ClientUdacityApi {
     }
     
     // MARK: updateData
-    class func updateUserInformation(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?, completion: @escaping (Bool, Error?) -> Void) {
+    class func updateUserInformation(mapString: String, mediaURL: String, position: CLLocation, completion: @escaping (Bool, Error?) -> Void) {
         let body = createHttpContent(mapString: mapString, mediaURL: mediaURL, position: position)
         taskForPUTRequest(url: Endpoints.objectId.url, getSessionId: false, body: body, responseType: PutUpdateStudentLocationResponse.self) { response, error in
             if response != nil {
@@ -346,6 +347,7 @@ class ClientUdacityApi {
     }
     
     // MARK: logout
+    // B.16. The logout button causes the Student Locations Tabbed View to dismiss, and logs out of the current session.
     class func logout(completion: @escaping (Bool, Error?) -> Void) {
         taskForDELETERequest(url: Endpoints.sessionId.url, responseType: DeleteLogoutResponse.self) { response, error in
             if response != nil {
@@ -362,7 +364,9 @@ class ClientUdacityApi {
         }
     }
     
-    class func createHttpContent(mapString: String, mediaURL: String, position: CLLocationCoordinate2D?) -> GetStudentInformation.KeyValuePairs {
+    // C.9. app encodes the data in JSON and posts the search string and coordinates to the RESTful service
+    // done in class func updateUserInformation and class func postStudentLocation
+    class func createHttpContent(mapString: String, mediaURL: String, position: CLLocation) -> GetStudentInformation.KeyValuePairs {
         let body = GetStudentInformation.KeyValuePairs (
             objectId: nil,
             uniqueKey: Auth.userId, // uniqueKey: key used to uniquely identify a StudentLocation; you should populate this value using your Udacity account id ~ userId. Note that even though not used as .case for url (~Endpoints.uniqueKey no used), still it is left in struct KeyValuePairs so that can be assigned Auth.userId in clacc func createHttpContent.
@@ -370,8 +374,8 @@ class ClientUdacityApi {
             lastName: Auth.lastName,
             mapString: mapString, // provided by user
             mediaURL: mediaURL, // provided by user
-            latitude: position?.latitude ?? 00.0, // gps information reported by the system based on provided mapString
-            longitude: position?.longitude ?? 00.0,
+            latitude: position.coordinate.latitude, // gps information reported by the system based on provided mapString
+            longitude: position.coordinate.longitude,
             createdAt: nil,
             updatedAt: nil
         )

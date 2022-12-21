@@ -14,8 +14,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: properties
     var locationName: String!
     var urlLink: String!
-    // var addedGpsLocation: CLLocation!
-    var addedGpsLocation: CLLocationCoordinate2D!
+    var addedLocationCoordiantes: CLLocation!
     var latitude: Double!
     var longitude: Double!
     
@@ -33,10 +32,10 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: actions
     @IBAction func confirmLocationTapped(_ sender: UIButton) {
         if ClientUdacityApi.Auth.locationAlreadyPosted == false {
-            ClientUdacityApi.postStudentLocation(mapString: locationName, mediaURL: urlLink, position: addedGpsLocation, completion: confirmLocationResponse(success:eror:))
+            ClientUdacityApi.postStudentLocation(mapString: locationName, mediaURL: urlLink, position: addedLocationCoordiantes, completion: confirmLocationResponse(success:eror:))
             print("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Posted, there had been no previous location posted in this session")
         } else {
-            ClientUdacityApi.updateUserInformation(mapString: locationName, mediaURL: urlLink, position: addedGpsLocation, completion: confirmLocationResponse(success:eror:))
+            ClientUdacityApi.updateUserInformation(mapString: locationName, mediaURL: urlLink, position: addedLocationCoordiantes, completion: confirmLocationResponse(success:eror:))
             print("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Updated, previous location posted in in this session has been overwritten")
         }
     }
@@ -46,11 +45,10 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: zoomAndDropPin
+    // C.8. The app shows a placemark on a map via the geocoded response. The app zooms the map into an appropriate region.
     func zoomAndDropPin() {
-        // addedGpsLocation = CLLocation(latitude: latitude, longitude: longitude) // drop pin to xy gps location
-        // zoomIn(addedGpsLocation, 50_000, 50_000) // 1_000 by default set in zoomIn method
-        addedGpsLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        zoomIn(addedGpsLocation)
+        addedLocationCoordiantes = CLLocation(latitude: latitude, longitude: longitude)
+        zoomInToAddedLocation(addedLocationCoordiantes)
         let pinLocationToConfirm = PinLocationToConfirm(locationName: locationName, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         mapViewToConfirmLocation.addAnnotation(pinLocationToConfirm)
     }
@@ -67,23 +65,11 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    // MARK: zoomIn
-    // func zoomIn(_ location: CLLocationCoordinate2D, _ spanInMetersLatidute: CLLocationDistance = 1_000, _ spanInMetersLongitute: CLLocationDistance = 1_000) { // instead of CLLocation -> CLLocationCoordinate2D
-    
-    func zoomIn(_ location: CLLocationCoordinate2D) {
+    // MARK: zoomInToAddedLocation
+    func zoomInToAddedLocation(_ location: CLLocation, zoomLevelInMeters: CLLocationDistance = 5000) {
         
-        // if let location = addedGpsLocation {
-            let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            
-            // let region = MKCoordinateRegion(center: center, latitudinalMeters: spanInMetersLatidute, longitudinalMeters: spanInMetersLongitute)
-            
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            
-            // let zoomedLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            
-            mapViewToConfirmLocation.setRegion(region, animated: true)
-            // mapViewToConfirmLocation.setCameraZoomRange(<#T##cameraZoomRange: MKMapView.CameraZoomRange?##MKMapView.CameraZoomRange?#>, animated: <#T##Bool#>)
-            // mapViewToConfirmLocation.setCenter(zoomedLocation, animated: true)
-        // }
+        let addedLocation = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: zoomLevelInMeters, longitudinalMeters: zoomLevelInMeters)
+        mapViewToConfirmLocation.setRegion(addedLocation, animated: true)
+          
     }
 }
