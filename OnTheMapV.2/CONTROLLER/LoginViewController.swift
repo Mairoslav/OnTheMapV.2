@@ -63,6 +63,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     completion(true, nil)
                     // self?.inputViewController?.modalPresentationStyle = .fullScreen
+                    
                 }
                 
                 Profile.loadCurrentProfile { profile, error in
