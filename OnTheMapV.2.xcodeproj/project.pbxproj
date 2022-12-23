@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2BC23AA078CD6E9AA4D8E4 /* Pods_OnTheMapV_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B381584C937FC7DB3902B43F /* Pods_OnTheMapV_2.framework */; };
 		441749B92948ACE40054174F /* TableTabbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441749B82948ACE40054174F /* TableTabbedViewController.swift */; };
 		44C3E1A92938FC2C00B89909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3E1A82938FC2C00B89909 /* AppDelegate.swift */; };
 		44C3E1AB2938FC2C00B89909 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3E1AA2938FC2C00B89909 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		441749B82948ACE40054174F /* TableTabbedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTabbedViewController.swift; sourceTree = "<group>"; };
+		442120BD2955343500E385C5 /* OnTheMapV.2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnTheMapV.2.entitlements; sourceTree = "<group>"; };
 		44C3E1A52938FC2C00B89909 /* OnTheMapV.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMapV.2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C3E1A82938FC2C00B89909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C3E1AA2938FC2C00B89909 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,9 @@
 		44D01DBB293B660B00E99A02 /* ProjectSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSpecification.swift; sourceTree = "<group>"; };
 		44D01DBD293B6F9E00E99A02 /* StudenInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudenInformationModel.swift; sourceTree = "<group>"; };
 		44D01DBF293B79D200E99A02 /* ClientUdacityApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUdacityApi.swift; sourceTree = "<group>"; };
+		681073E38297C8C784324643 /* Pods-OnTheMapV.2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapV.2.debug.xcconfig"; path = "Target Support Files/Pods-OnTheMapV.2/Pods-OnTheMapV.2.debug.xcconfig"; sourceTree = "<group>"; };
+		781E355F1D3F207BBE518962 /* Pods-OnTheMapV.2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapV.2.release.xcconfig"; path = "Target Support Files/Pods-OnTheMapV.2/Pods-OnTheMapV.2.release.xcconfig"; sourceTree = "<group>"; };
+		B381584C937FC7DB3902B43F /* Pods_OnTheMapV_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheMapV_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,17 +70,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E2BC23AA078CD6E9AA4D8E4 /* Pods_OnTheMapV_2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CA13D2A2A492985071A0A3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B381584C937FC7DB3902B43F /* Pods_OnTheMapV_2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		44C3E19C2938FC2C00B89909 = {
 			isa = PBXGroup;
 			children = (
 				44C3E1A72938FC2C00B89909 /* OnTheMapV.2 */,
 				44C3E1A62938FC2C00B89909 /* Products */,
+				E6ACBFEB752BA5DBE2502F54 /* Pods */,
+				3CA13D2A2A492985071A0A3B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +106,7 @@
 		44C3E1A72938FC2C00B89909 /* OnTheMapV.2 */ = {
 			isa = PBXGroup;
 			children = (
+				442120BD2955343500E385C5 /* OnTheMapV.2.entitlements */,
 				44C3E1A82938FC2C00B89909 /* AppDelegate.swift */,
 				44C3E1AA2938FC2C00B89909 /* SceneDelegate.swift */,
 				44D01DB1293B51ED00E99A02 /* MODEL */,
@@ -174,6 +191,15 @@
 			path = ResponsesUdacityApi;
 			sourceTree = "<group>";
 		};
+		E6ACBFEB752BA5DBE2502F54 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				681073E38297C8C784324643 /* Pods-OnTheMapV.2.debug.xcconfig */,
+				781E355F1D3F207BBE518962 /* Pods-OnTheMapV.2.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44C3E1B92938FC2D00B89909 /* Build configuration list for PBXNativeTarget "OnTheMapV.2" */;
 			buildPhases = (
+				EA758715A4A0CFCD3F83EEED /* [CP] Check Pods Manifest.lock */,
 				44C3E1A12938FC2C00B89909 /* Sources */,
 				44C3E1A22938FC2C00B89909 /* Frameworks */,
 				44C3E1A32938FC2C00B89909 /* Resources */,
+				E4B68B86090C87CF38A5FC9D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,6 +267,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E4B68B86090C87CF38A5FC9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnTheMapV.2/Pods-OnTheMapV.2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnTheMapV.2/Pods-OnTheMapV.2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnTheMapV.2/Pods-OnTheMapV.2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA758715A4A0CFCD3F83EEED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnTheMapV.2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		44C3E1A12938FC2C00B89909 /* Sources */ = {
@@ -406,9 +476,11 @@
 		};
 		44C3E1BA2938FC2D00B89909 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681073E38297C8C784324643 /* Pods-OnTheMapV.2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OnTheMapV.2/OnTheMapV.2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFXL43VVT7;
@@ -434,9 +506,11 @@
 		};
 		44C3E1BB2938FC2D00B89909 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 781E355F1D3F207BBE518962 /* Pods-OnTheMapV.2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OnTheMapV.2/OnTheMapV.2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFXL43VVT7;

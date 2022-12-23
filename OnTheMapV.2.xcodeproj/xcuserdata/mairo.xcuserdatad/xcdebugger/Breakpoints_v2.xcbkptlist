@@ -20,7 +20,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E5C03B2A-E7A7-42E0-9BB1-97EF5BDBE8E0 - 44ff19311d527688"
+                  uuid = "E5C03B2A-E7A7-42E0-9BB1-97EF5BDBE8E0 - 44ff19311d5277b6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,12 +30,12 @@
                   urlString = "file:///Users/mairo/Documents/13%20Udacity/5networkAndGCDMap/OnTheMapV.2/OnTheMapV.2/MODEL/ClientUdacityApi/ClientUdacityApi.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
                   offsetFromSymbolStart = "968">
                </Location>
                <Location
-                  uuid = "E5C03B2A-E7A7-42E0-9BB1-97EF5BDBE8E0 - 9b5ef05ff22c576a"
+                  uuid = "E5C03B2A-E7A7-42E0-9BB1-97EF5BDBE8E0 - 9b5ef05ff22c5614"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/mairo/Documents/13%20Udacity/5networkAndGCDMap/OnTheMapV.2/OnTheMapV.2/MODEL/ClientUdacityApi/ClientUdacityApi.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "129"
-                  endingLineNumber = "129"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
                   offsetFromSymbolStart = "540">
                </Location>
             </Locations>

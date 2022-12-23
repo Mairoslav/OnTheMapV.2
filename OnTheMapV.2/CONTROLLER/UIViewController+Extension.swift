@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FBSDKLoginKit
 
 extension UIViewController {
     
@@ -101,11 +102,19 @@ extension UIViewController {
         ClientUdacityApi.logout { success, error in
             // if log out of the current session successful, LoginViewController is presented
             if success {
+                
+                let loginManager = LoginManager()
+                if let _ = AccessToken.current {
+                    // if user is loggedIn go ahead with logOut
+                    loginManager.logOut()
+                }
+                
+                // transition to LoginViewController
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
                 LoginViewController.modalPresentationStyle = .fullScreen
                 self.present(LoginViewController, animated: true)
-                print("Logged Out successfuly")
+                print("🔳 Logged Out successfuly") 
             } else {
                 self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "defaultNil")
             }
