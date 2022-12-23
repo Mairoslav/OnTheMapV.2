@@ -7,9 +7,10 @@
 
 import UIKit
 import FBSDKLoginKit
+import SafariServices
 
 // A.1. the app has a login view that accepts email and password strings from users
-class LoginViewController: UIViewController { 
+class LoginViewController: UIViewController {
  
     // MARK: outlets for textFields, buttons and activityIndicator
     @IBOutlet weak var emailTextField: UITextField!
@@ -26,7 +27,6 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
         print("🔳 LoginViewController was Loaded")
-        
     }
     
     // MARK: loginTapped
@@ -50,20 +50,24 @@ class LoginViewController: UIViewController {
             loginManager.logOut()
         } else {
             // go ahead with logIn
-            loginManager.logIn(permissions: [], from: self) { [weak self] (result, error) in
+            loginManager.logIn(permissions: [], from: self) { [weak self] result, error in
                 // guard that no error, otherwise async complete with error and return
                 guard error == nil else {
+                    self?.showAlertMessage(title: "Login with Fb Failed", message: "unknown error occured")
                     DispatchQueue.main.async {
                         completion(false, error)
                     }
-                    self?.showAlertMessage(title: "Cannot Login with Facebook", message: error?.localizedDescription ?? "defaultNil")
+                    return
+                }
+                // guard that result is not cancelled otherwise cancel activity indicator... and return
+                guard let result = result, !result.isCancelled else {
+                    self?.deActivateTextFieldsAndActivityIndicator(loggingInIsOngoing: false)
+                    print("🔳 fb login was cancelled by user")
                     return
                 }
                 // if logIn successful
                 DispatchQueue.main.async {
                     completion(true, nil)
-                    // self?.inputViewController?.modalPresentationStyle = .fullScreen
-                    
                 }
                 
                 Profile.loadCurrentProfile { profile, error in
@@ -107,4 +111,10 @@ class LoginViewController: UIViewController {
     
 }
 
-
+// facebook login view is opened via a webview, setting webview to .fullScreen
+extension SFSafariViewController {
+    override open var modalPresentationStyle: UIModalPresentationStyle {
+        get { return .fullScreen}
+        set { super.modalPresentationStyle = newValue}
+    }
+}
