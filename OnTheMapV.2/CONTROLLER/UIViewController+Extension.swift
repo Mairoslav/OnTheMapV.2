@@ -109,11 +109,9 @@ extension UIViewController {
                     loginManager.logOut()
                 }
                 
-                // transition to LoginViewController
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
-                LoginViewController.modalPresentationStyle = .fullScreen
-                self.present(LoginViewController, animated: true)
+                // dismissing the tab bar controller, so we uncover LoginViewControler
+                self.dismiss(animated: true, completion: nil)
+                
                 print("🔳 Logged Out successfuly") 
             } else {
                 self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "defaultNil")

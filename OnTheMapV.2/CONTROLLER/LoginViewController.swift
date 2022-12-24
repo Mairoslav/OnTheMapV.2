@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        // when the activity indicator is stopped it is hidden
+        activityIndicator.hidesWhenStopped = true
+        
         // tap outside of the pop-up keybord to dismiss it via .endEditing
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -83,7 +86,6 @@ class LoginViewController: UIViewController {
     func completeLoginResponse(success: Bool, error: Error?) {
         deActivateTextFieldsAndActivityIndicator(loggingInIsOngoing: false)
         if success {
-            // self.performSegue(withIdentifier: "completeLogin", sender: nil)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MapTabbedViewController = storyboard.instantiateViewController(withIdentifier: "MapTabbedViewController")
             present(MapTabbedViewController, animated: true)
@@ -97,16 +99,12 @@ class LoginViewController: UIViewController {
     // MARK: deActivateTextFieldsAndActivityIndicator
     func deActivateTextFieldsAndActivityIndicator(loggingInIsOngoing: Bool) {
         // acitivity indicator does spin when loggingInIsOngoing is true
-        if loggingInIsOngoing {
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-        }
+        loggingInIsOngoing ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         
         // text fields and button are enabled when loggingInIsOngoing if false, negated by !
-        self.emailTextField.isEnabled = !loggingInIsOngoing
-        self.passwordTextField.isEnabled = !loggingInIsOngoing
-        self.loginButton.isEnabled = !loggingInIsOngoing
+        emailTextField.isEnabled = !loggingInIsOngoing
+        passwordTextField.isEnabled = !loggingInIsOngoing
+        loginButton.isEnabled = !loggingInIsOngoing
     }
     
 }

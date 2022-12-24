@@ -17,7 +17,16 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    // no viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // when the activity indicator is stopped it is hidden
+        activityIndicator.hidesWhenStopped = true
+        
+        // tap outside of the pop-up keybord to dismiss it via .endEditing
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        print("🔳 AddLocationViewController was Loaded")
+    }
     
     // MARK: actions
     // C.10. button that the user can tap to cancel (dismiss) the Information Posting View
@@ -29,7 +38,7 @@ class AddLocationViewController: UIViewController {
     // C.5. When a "Submit/Add Location" button is pressed, the app forward geocodes the address string and stores the resulting latitude and longitude. Foward geocoding can be accomplished using CLGeocoder's geocodeAddressString() or MKLocalSearch's startWithCompletionHandler(). Via func locationToCoordinates
     // segue to next confirmation screen via func addLocationResponse in completion hadnler of func locationToCoordinates
     @IBAction func addLocation(_ sender: UIButton) {
-        addLocationLoading(true)
+        addingLocation(isLoading: true)
         locationToCoordinates(typedLocationString: self.locationTextField.text ?? "defaultNil", completion: (addLocationResponse(locationCoordinates:error:))) // adding Location String and handling transfer to gps coordinates in completionHandler
     }
     
@@ -50,7 +59,7 @@ class AddLocationViewController: UIViewController {
     
     // MARK: addLocationResponse
     func addLocationResponse(locationCoordinates: CLLocationCoordinate2D, error: Error?) {
-        addLocationLoading(false)
+        addingLocation(isLoading: false)
         if error == nil { // if no error segue to next view controller
             let segueToConfirmLocationVC = storyboard?.instantiateViewController(withIdentifier: "confirmLocation") as! ConfirmLocationViewController
             
@@ -68,19 +77,15 @@ class AddLocationViewController: UIViewController {
         }
     }
     
-    // MARK: addLocationLoading
-    func addLocationLoading(_ loading: Bool) { // activity indicator not/spinning if not/loading added location
-        if loading {
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-        }
+    // MARK: addingLocation
+    func addingLocation(isLoading: Bool) { // activity indicator not/spinning if not/loading added location
+        isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         
         // while added location is being loaded and the activityIndicator spins, fields and button are disabled
         // are enabled when not loading
-        self.locationTextField.isEnabled = !loading
-        self.urlTextField.isEnabled = !loading
-        self.addLocationButton.isEnabled = !loading
+        locationTextField.isEnabled = !isLoading
+        urlTextField.isEnabled = !isLoading
+        addLocationButton.isEnabled = !isLoading
     }
     
 }
