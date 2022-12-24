@@ -20,6 +20,7 @@ class AddLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // when the activity indicator is stopped it is hidden
+        // can be stopped also from storyboard, choose Activity Indicator and in its view choose option Hides When Stopped
         activityIndicator.hidesWhenStopped = true
         
         // tap outside of the pop-up keybord to dismiss it via .endEditing

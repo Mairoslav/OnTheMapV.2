@@ -327,7 +327,7 @@
         <!--mapTabbedView-->
         <scene sceneID="FZ0-yi-3VX">
             <objects>
-                <viewController title="Map Tabbed View" id="XeI-lY-e7d" userLabel="mapTabbedView" customClass="MapTabbedViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="XeI-lY-e7d" userLabel="mapTabbedView" customClass="MapTabbedViewController" customModule="OnTheMapV_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZF-wj-qSJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7S-SF-Ao4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4170" y="-27"/>
+            <point key="canvasLocation" x="4132" y="-27"/>
         </scene>
         <!--Information Posting View-->
         <scene sceneID="liW-53-chg">
@@ -512,7 +512,7 @@
                                             <action selector="addLocation:" destination="EmY-AY-MwV" eventType="touchUpInside" id="PKG-aK-H5S"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vpK-Tb-wAu">
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vpK-Tb-wAu">
                                         <rect key="frame" x="0.0" y="120" width="353" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="uwL-IW-AuF"/>

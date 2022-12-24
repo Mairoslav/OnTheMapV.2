@@ -6,7 +6,8 @@
 //
 
 import Foundation
-/*
+
+
 struct ErrorResponse: Codable {
     let status: Int
     let error: String 
@@ -17,8 +18,9 @@ extension ErrorResponse: LocalizedError {
         return error
     }
 }
-*/
 
+
+/*
 // ecreate (cutom) ErrorResponse enum that conforms to the Error and Codable protocols
 enum ErrorResponse: Error, Codable {
     // Each case of the enum represents a unique error that can be thrown and handled
@@ -44,7 +46,7 @@ extension ErrorResponse: LocalizedError {
 
 // error?.localizedDescription
 
-
+*/
 
 /*
 extension CustomErrorResponse: CustomStringConvertible {
@@ -60,4 +62,5 @@ extension CustomErrorResponse: CustomStringConvertible {
     }
 }
 */
+
 

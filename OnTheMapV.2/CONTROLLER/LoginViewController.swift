@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // when the activity indicator is stopped it is hidden
+        // can be stopped also from storyboard, choose Activity Indicator and in its view choose option Hides When Stopped
         activityIndicator.hidesWhenStopped = true
         
         // tap outside of the pop-up keybord to dismiss it via .endEditing
@@ -91,8 +92,13 @@ class LoginViewController: UIViewController {
             present(MapTabbedViewController, animated: true)
             debugPrint("🔳 Logging in was successful")
         } else {
-            showAlertMessage(title: "Login Failed", message: error?.localizedDescription ?? "defaultNil") // A.2. app informs the user if the login fails and differentiates between a failure to connect/incorrect credentials thanks to .localizedDescription
-            debugPrint("🔳 Logging in failed due to no connection or incorrect credentials - see Alert message")
+            if error?.localizedDescription == "cannot parse response" {
+                showAlertMessage(title: "Login Failed", message: "The internet connection is offline")
+            } else {
+                showAlertMessage(title: "Login Failed", message: "The credentials were incorrect")
+                // showAlertMessage(title: "Login Failed", message: error?.localizedDescription ?? "defaultNil") // A.2. app informs the user if the login fails and differentiates between a failure to connect/incorrect credentials thanks to .localizedDescription
+                // debugPrint("🔳 Logging in failed due to no connection or incorrect credentials - see Alert message")
+            }
         }
     }
     

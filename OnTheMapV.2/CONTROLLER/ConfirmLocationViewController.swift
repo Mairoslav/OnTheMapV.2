@@ -55,7 +55,8 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: confirmLocationResponse
     func confirmLocationResponse(success: Bool, eror: Error?) {
-        if success { // if success transition to "MapViewController"
+        if success {
+            // if success transition to "MapTabbedViewController"
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MapTabbedViewController = storyboard.instantiateViewController(withIdentifier: "MapTabbedViewController")
             present(MapTabbedViewController, animated: true)
@@ -70,6 +71,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         
         let addedLocation = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: zoomLevelInMeters, longitudinalMeters: zoomLevelInMeters)
         mapViewToConfirmLocation.setRegion(addedLocation, animated: true)
-          
+        
     }
+    
 }
