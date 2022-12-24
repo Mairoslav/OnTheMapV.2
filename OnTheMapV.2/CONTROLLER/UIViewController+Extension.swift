@@ -14,7 +14,7 @@ extension UIViewController {
     // MARK: addPinTapped
     // B.14. pin button in the navigation bar allow users to post their own information to the server
     @IBAction func addPinTapped(_ sender: UIBarButtonItem) {
-        print("🔳 addPinTapped")
+        debugPrint("🔳 addPinTapped")
         // locationAlreadyPosted is true in case of non empty String without objectId
         let locationAlreadyPosted = ClientUdacityApi.Auth.objectId != ""
         
@@ -22,12 +22,12 @@ extension UIViewController {
             // if true, user can A) overwrite it within UIAlertAction pop-up window
             let overwriteLocation = UIAlertAction(title: "Overwrite", style: .default) { action in
                 self.overwriteLocation(yesOverwrite: true) // overwrite is enabled*
-                print("🔳 Location has been already posted in this session ~ overwrite location was enabled, adding new location is initiated in AddLocationViewController")
+                debugPrint("🔳 Location has been already posted in this session ~ overwrite location was enabled, adding new location is initiated in AddLocationViewController")
             }
             // B) or keep current location via canceling the current action
             let keepLocation = UIAlertAction(title: "Keep", style: .cancel) { action in
                 // no code, only Alert pop-up window is closed when option "Keep" is chosen
-                print("🔳 Location is kept")
+                debugPrint("🔳 Location is kept")
             }
             
             // alert pop-up window to inform that location has been already posted
@@ -37,7 +37,7 @@ extension UIViewController {
             present(locationAlreadyPostedAlertPopUp, animated: true, completion: nil)
         } else {
             overwriteLocation(yesOverwrite: false) // no overwrite**
-            print("🔳 No location has been posted in this session ~ nothing to overwrite, adding new location is initiated in AddLocationViewController")
+            debugPrint("🔳 No location has been posted in this session ~ nothing to overwrite, adding new location is initiated in AddLocationViewController")
             
         }
     }
@@ -47,7 +47,7 @@ extension UIViewController {
         ClientUdacityApi.getStudentInformation { studentLocation, error in
             if error == nil {
                 StudentInformationModel.studentLocation = studentLocation // this refresh is already done in MapTabbedViewController, see comment B.11. Only makes sense to press refresh button in case to check whether any other students did post new locations since the time that user is logged in and if MapTabbedViewController was not selected in TabbedView or instantiate after adding new location.
-                print("🔳 Students posts were refreshed")
+                debugPrint("🔳 Students posts were refreshed")
             } else {
                 self.showAlertMessage(title: "Data Refresh Failed", message: error?.localizedDescription ?? "defaultNil")
             }
@@ -78,7 +78,7 @@ extension UIViewController {
             if validUrl {
                 DispatchQueue.main.async {
                     UIApplication.shared.open(urlProvided, options: [:], completionHandler: nil)
-                    print("🔳 Url was opened")
+                    debugPrint("🔳 Url was opened")
                 }
             } else {
                 showAlertMessage(title: "Not valid Url", message: "Provided Url is not valid ")
@@ -112,7 +112,7 @@ extension UIViewController {
                 // dismissing the tab bar controller, so we uncover LoginViewControler
                 self.dismiss(animated: true, completion: nil)
                 
-                print("🔳 Logged Out successfuly") 
+                debugPrint("🔳 Logged Out successfuly") 
             } else {
                 self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "defaultNil")
             }

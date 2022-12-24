@@ -18,7 +18,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadLocations()
-        print("🔳 MapTabbedView was re/loaded")
+        debugPrint("🔳 MapTabbedView was re/loaded")
     }
     
     // MARK: downloadLocations()
@@ -27,7 +27,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
             if error == nil {
                 StudentInformationModel.studentLocation = studentLocation // B.11. table is sorted in order of most recent to oldest update because of calling method getStudentInformation line above and assigning studentLocation to StudentInformationModel.studentLocation. In ".studentsLocation" we store array of "GetStudentInformation" struct/s. StudentInformationModel.studentLocation is returned in tableView methods within TableTabbedViewController.swift. Therefore no need to tableView.reloadData() in ViewDidLoad() within TableTabbedViewController.swift. Only makes sense to press refresh button in case to check whether any other students did post new locations since the time that user is logged in. 
                 self.createPointAnnotation()
-                print("🔳 100 most recent students posts were downloaded via calling getStudentInformation and createPointAnnotation() methods in func downloadLocations() within MapTabbedViewController.swift")
+                debugPrint("🔳 100 most recent students posts were downloaded via calling getStudentInformation and createPointAnnotation() methods in func downloadLocations() within MapTabbedViewController.swift")
             } else {
                 self .showAlertMessage(title: "Download Failed", message: error?.localizedDescription ?? "defaultNil") // B.5 the app handles a failure to download student locations
             }
@@ -111,7 +111,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
             // let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
                 openURLLink(urlString: toOpen) // B.9. If the pin annotation is tapped, is the link opened in Safari
-                print("🔳 Annotation/pin infoIcon was tapped ")
+                debugPrint("🔳 Annotation/pin infoIcon was tapped ")
             }
         }
     }

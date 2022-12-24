@@ -30,7 +30,7 @@ class TableTabbedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData() // table is updated also without this line, see comment B.11. in MapTabbedViewController.swift
-        print("🔳 TableTabbedView was selected first time and re/loaded") // note that once data are downloaded within MapTabbedView, after first time opening the TableTabbedView they are re/loaded also here.
+        debugPrint("🔳 TableTabbedView was selected first time and re/loaded") // note that once data are downloaded within MapTabbedView, after first time opening the TableTabbedView they are re/loaded also here.
     }
     
 }

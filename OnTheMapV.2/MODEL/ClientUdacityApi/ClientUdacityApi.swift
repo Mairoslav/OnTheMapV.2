@@ -136,7 +136,7 @@ class ClientUdacityApi {
                 DispatchQueue.main.async {
                     completion(nil, error)
                 }
-                print("data failed")
+                debugPrint("data failed")
                 return
             }
             
@@ -158,7 +158,7 @@ class ClientUdacityApi {
             } catch {
                 do {
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data) as Error
-                    print("decoding failed during Login")
+                    debugPrint("decoding failed during Login")
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -188,7 +188,7 @@ class ClientUdacityApi {
                 DispatchQueue.main.async {
                     completion(nil, error)
                 }
-                print("data failed")
+                debugPrint("data failed")
                 return
             }
             
@@ -210,7 +210,7 @@ class ClientUdacityApi {
             } catch {
                 do {
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data) as Error
-                    print("decoding failed during Update")
+                    debugPrint("decoding failed during Update")
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -284,7 +284,7 @@ class ClientUdacityApi {
                 getPublicUserData { success, error in
                     if success {
                         completion(true, nil)
-                        print("🔳 Random fake user data are retrieved before they are posted via calling getPublicUserData method in class func login")
+                        debugPrint("🔳 Random fake user data are retrieved before they are posted via calling getPublicUserData method in class func login")
                     } else {
                         completion(false, error)
                     }
@@ -379,7 +379,7 @@ class ClientUdacityApi {
             createdAt: nil,
             updatedAt: nil
         )
-        print("🔳 New location was created/updated (depending on if called in postStudentLocation/updateUserInformation) via func createHttpContent, let body = GetStudentInformation.KeyValuePairs: \(body)")
+        debugPrint("🔳 New location was created/updated (depending on if called in postStudentLocation/updateUserInformation) via func createHttpContent, let body = GetStudentInformation.KeyValuePairs: \(body)")
         return body
     }
     

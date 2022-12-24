@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         // tap outside of the pop-up keybord to dismiss it via .endEditing
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        print("🔳 LoginViewController was Loaded")
+        debugPrint("🔳 LoginViewController was Loaded")
     }
     
     // MARK: loginTapped
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
                 // guard that result is not cancelled otherwise cancel activity indicator... and return
                 guard let result = result, !result.isCancelled else {
                     self?.deActivateTextFieldsAndActivityIndicator(loggingInIsOngoing: false)
-                    print("🔳 fb login was cancelled by user")
+                    debugPrint("🔳 fb login was cancelled by user")
                     return
                 }
                 // if logIn successful
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
                     ClientUdacityApi.Auth.firstName = "Mārtiņš Garanča"
                 }
                 
-                print("🔳 Logging in via Fb was successful")
+                debugPrint("🔳 Logging in via Fb was successful")
             }
         }
     }
@@ -89,10 +89,10 @@ class LoginViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MapTabbedViewController = storyboard.instantiateViewController(withIdentifier: "MapTabbedViewController")
             present(MapTabbedViewController, animated: true)
-            print("🔳 Logging in was successful")
+            debugPrint("🔳 Logging in was successful")
         } else {
             showAlertMessage(title: "Login Failed", message: error?.localizedDescription ?? "defaultNil") // A.2. app informs the user if the login fails and differentiates between a failure to connect/incorrect credentials thanks to .localizedDescription
-            print("🔳 Logging in failed due to no connection or incorrect credentials - see Alert message")
+            debugPrint("🔳 Logging in failed due to no connection or incorrect credentials - see Alert message")
         }
     }
     

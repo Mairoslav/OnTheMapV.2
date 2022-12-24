@@ -33,10 +33,10 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     @IBAction func confirmLocationTapped(_ sender: UIButton) {
         if ClientUdacityApi.Auth.locationAlreadyPosted == false {
             ClientUdacityApi.postStudentLocation(mapString: locationName, mediaURL: urlLink, position: addedLocationCoordiantes, completion: confirmLocationResponse(success:eror:))
-            print("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Posted, there had been no previous location posted in this session")
+            debugPrint("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Posted, there had been no previous location posted in this session")
         } else {
             ClientUdacityApi.updateUserInformation(mapString: locationName, mediaURL: urlLink, position: addedLocationCoordiantes, completion: confirmLocationResponse(success:eror:))
-            print("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Updated, previous location posted in in this session has been overwritten")
+            debugPrint("🔳 New location \(locationName ?? "nil") of user \(ClientUdacityApi.Auth.firstName) \(ClientUdacityApi.Auth.lastName) was confirmed and Updated, previous location posted in in this session has been overwritten")
         }
     }
     
@@ -59,7 +59,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MapTabbedViewController = storyboard.instantiateViewController(withIdentifier: "MapTabbedViewController")
             present(MapTabbedViewController, animated: true)
-            print("🔳 After new location is confirmed, MapTabbedViewController is instatiated thanks to calling func confirmLocationResponse within @IBAction func confirmLocationTapped")
+            debugPrint("🔳 After new location is confirmed, MapTabbedViewController is instatiated thanks to calling func confirmLocationResponse within @IBAction func confirmLocationTapped")
         } else {
             showAlertMessage(title: "Adding Location Failed", message: eror?.localizedDescription ?? "defaultNil")
         }

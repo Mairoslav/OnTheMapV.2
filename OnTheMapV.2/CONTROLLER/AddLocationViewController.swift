@@ -25,14 +25,14 @@ class AddLocationViewController: UIViewController {
         // tap outside of the pop-up keybord to dismiss it via .endEditing
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        print("🔳 AddLocationViewController was Loaded")
+        debugPrint("🔳 AddLocationViewController was Loaded")
     }
     
     // MARK: actions
     // C.10. button that the user can tap to cancel (dismiss) the Information Posting View
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil) // returning to previous view ~ tabbedView-Map/Table
-        print("🔳 Returning to previous map/tab-tabbed view via cancel button")
+        debugPrint("🔳 Returning to previous map/tab-tabbed view via cancel button")
     }
     
     // C.5. When a "Submit/Add Location" button is pressed, the app forward geocodes the address string and stores the resulting latitude and longitude. Foward geocoding can be accomplished using CLGeocoder's geocodeAddressString() or MKLocalSearch's startWithCompletionHandler(). Via func locationToCoordinates
@@ -70,7 +70,7 @@ class AddLocationViewController: UIViewController {
             segueToConfirmLocationVC.longitude = locationCoordinates.longitude
             
             present(segueToConfirmLocationVC, animated: true, completion: nil) // and present it
-            print("🔳 New location was added, and is to be confirmed")
+            debugPrint("🔳 New location was added, and is to be confirmed")
         } else {
             // C.7. The app informs the user if the geocoding fails.
             showAlertMessage(title: "Adding Location Failed", message: error?.localizedDescription ?? "defaultNil")
