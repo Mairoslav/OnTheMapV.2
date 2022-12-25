@@ -49,7 +49,7 @@ extension UIViewController {
                 StudentInformationModel.studentLocation = studentLocation // this refresh is already done in MapTabbedViewController, see comment B.11. Only makes sense to press refresh button in case to check whether any other students did post new locations since the time that user is logged in and if MapTabbedViewController was not selected in TabbedView or instantiate after adding new location.
                 debugPrint("🔳 Students posts were refreshed")
             } else {
-                self.showAlertMessage(title: "Data Refresh Failed", message: error?.localizedDescription ?? "defaultNil")
+                self.showAlertMessage(title: "Data Reload Failed", message: ErrorResponse.failedDataRefresh.localizedDescription)
             }
         }
     }
@@ -109,12 +109,15 @@ extension UIViewController {
                     loginManager.logOut()
                 }
                 
-                // dismissing the tab bar controller, so we uncover LoginViewControler
-                self.dismiss(animated: true, completion: nil)
+                // transiton to LoginViewController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
+                LoginViewController.modalPresentationStyle = .fullScreen
+                self.present(LoginViewController, animated: true)
                 
                 debugPrint("🔳 Logged Out successfuly") 
             } else {
-                self.showAlertMessage(title: "Logout Failed", message: error?.localizedDescription ?? "defaultNil")
+                self.showAlertMessage(title: "Logout Failed", message: ErrorResponse.failedLogOut.localizedDescription)
             }
         }
     }

@@ -62,7 +62,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
             present(MapTabbedViewController, animated: true)
             debugPrint("🔳 After new location is confirmed, MapTabbedViewController is instatiated thanks to calling func confirmLocationResponse within @IBAction func confirmLocationTapped")
         } else {
-            showAlertMessage(title: "Adding Location Failed", message: eror?.localizedDescription ?? "defaultNil")
+            showAlertMessage(title: "Location Confirmation Failed", message: ErrorResponse.failedLocationConfirmation.localizedDescription)
         }
     }
     

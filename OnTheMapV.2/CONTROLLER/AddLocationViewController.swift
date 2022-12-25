@@ -74,7 +74,7 @@ class AddLocationViewController: UIViewController {
             debugPrint("🔳 New location was added, and is to be confirmed")
         } else {
             // C.7. The app informs the user if the geocoding fails.
-            showAlertMessage(title: "Adding Location Failed", message: error?.localizedDescription ?? "defaultNil")
+            showAlertMessage(title: "Location Not Recognized", message: ErrorResponse.notRecognizedLocation.localizedDescription)
         }
     }
     

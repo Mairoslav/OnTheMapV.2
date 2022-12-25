@@ -92,13 +92,19 @@ class LoginViewController: UIViewController {
             present(MapTabbedViewController, animated: true)
             debugPrint("🔳 Logging in was successful")
         } else {
-            if error?.localizedDescription == "cannot parse response" {
-                showAlertMessage(title: "Login Failed", message: "The internet connection is offline")
-            } else {
-                showAlertMessage(title: "Login Failed", message: "The credentials were incorrect")
-                // showAlertMessage(title: "Login Failed", message: error?.localizedDescription ?? "defaultNil") // A.2. app informs the user if the login fails and differentiates between a failure to connect/incorrect credentials thanks to .localizedDescription
-                // debugPrint("🔳 Logging in failed due to no connection or incorrect credentials - see Alert message")
+            if error!.localizedDescription == "cannot parse response" ||
+                error!.localizedDescription == "The request timed out." {
+                // apply in case when activating Network Link Conditioner to slow down internet connection
+                showAlertMessage(title: "Login Failed", message: ErrorResponse.slowConnection.localizedDescription)
             }
+            else if error!.localizedDescription == "The Internet connection appears to be offline." {
+                // apply in case when switching off wifi connection
+                showAlertMessage(title: "Login Failed", message: ErrorResponse.noConnection.localizedDescription)
+            } else {
+                // showAlertMessage(title: "Login Failed", message: "The credentials were incorrect")
+                showAlertMessage(title: "Login Failed", message: ErrorResponse.wrongCredentials.localizedDescription)
+            }
+            debugPrint("🔳 Logging in failed due to slow/no connection or incorrect credentials - see Alert message")
         }
     }
     

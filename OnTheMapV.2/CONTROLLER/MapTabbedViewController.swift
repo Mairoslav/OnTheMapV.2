@@ -29,7 +29,7 @@ class MapTabbedViewController: UIViewController, MKMapViewDelegate {
                 self.createPointAnnotation()
                 debugPrint("🔳 100 most recent students posts were downloaded via calling getStudentInformation and createPointAnnotation() methods in func downloadLocations() within MapTabbedViewController.swift")
             } else {
-                self .showAlertMessage(title: "Download Failed", message: error?.localizedDescription ?? "defaultNil") // B.5 the app handles a failure to download student locations
+                self .showAlertMessage(title: "Download of Existing Locations Failed", message: ErrorResponse.failedLocationsDownload.localizedDescription) // B.5 the app handles a failure to download student locations
             }
         }
     }

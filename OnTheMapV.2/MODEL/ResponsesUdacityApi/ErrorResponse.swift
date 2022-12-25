@@ -7,60 +7,38 @@
 
 import Foundation
 
-
-struct ErrorResponse: Codable {
-    let status: Int
-    let error: String 
+enum ErrorResponse: Codable, Error {
+    case slowConnection
+    case noConnection
+    case wrongCredentials
+    case failedLocationsDownload
+    case notRecognizedLocation
+    case failedLocationConfirmation
+    case failedDataRefresh
+    case failedLogOut
 }
 
 extension ErrorResponse: LocalizedError {
     var errorDescription: String? {
-        return error
-    }
-}
-
-
-/*
-// ecreate (cutom) ErrorResponse enum that conforms to the Error and Codable protocols
-enum ErrorResponse: Error, Codable {
-    // Each case of the enum represents a unique error that can be thrown and handled
-    case wrongCredentials
-    case noConnection
-    case unknown(code: Int)
-}
-
-// extend the cutom) ErrorResponse to conform to LocalizedError and add a property errorDescription:
-extension ErrorResponse: LocalizedError {
-    public var errorDescription: String? {
-        // For each error type return the appropriate localized description:
         switch self {
-            case .wrongCredentials:
-                return NSLocalizedString("The credentials were incorrect, please check your email or/and your password.", comment: "Invalid Credentials")
+            case .slowConnection:
+                return NSLocalizedString("The Internet connection speed is not sufficient to load the app.", comment: "")
             case .noConnection:
-                return NSLocalizedString("The Internet connection is offline, please try again later.", comment: "No Connection")
-            case .unknown(_):
-                return NSLocalizedString("An unknown error occured", comment: "Unknown Error")
-        }
-    }
-}
-
-// error?.localizedDescription
-
-*/
-
-/*
-extension CustomErrorResponse: CustomStringConvertible {
-    public var description: String {
-        switch self {
+                return NSLocalizedString("The Internet connection is offline, please try again later.", comment: "")
             case .wrongCredentials:
-                return "The credentials were incorrect, please check your email or/and your password."
-            case .connectionOffline:
-                return "The Internet connection is offline, please try again later."
-            case .unknown(_):
-                return "An unknown error occured"
+                return NSLocalizedString("The credentials were incorrect, please check your email or/and your password.", comment: "")
+            case .failedLocationsDownload:
+                return NSLocalizedString("Download of existing Locations Failed, please report this issue to app provider.", comment: "")
+            case .notRecognizedLocation:
+                return NSLocalizedString("Location you have specified has not been recognized, please try typing in your Location again.", comment: "")
+            case .failedLocationConfirmation:
+                return NSLocalizedString("Something went wrong with your Location Confirmation, please report this issue to app provider.", comment: "")
+            case .failedDataRefresh:
+                return NSLocalizedString("Reloading of existing Locations has Failed, please report this issue to app provider.", comment: "")
+            case .failedLogOut:
+                return NSLocalizedString("Loggin out has failed, please report this issue to app provider.", comment: "")
         }
     }
 }
-*/
 
 
